@@ -1,0 +1,572 @@
+
+
+{
+    "headerId": 0,
+    "timestamp": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "version": "ABCDEFGHIJ",
+    "manufacturer": "ABCDEFGHIJKLMNOPQRSTUV",
+    "serialNumber": "ABCDEFGHIJKLM",
+    "orderId": "ABCDEFGHIJKLMNOPQRSTUVWX",
+    "orderUpdateId": 0,
+    "lastNodeId": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+    "lastNodeSequenceId": 0,
+    "nodeStates": [
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+        "sequenceId": 0,
+        "released": false,
+        "nodeDescription": "ABCDEFGHIJK",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+          "theta": 0.0
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHI",
+        "sequenceId": 0,
+        "released": false,
+        "nodeDescription": "ABCDEFGHIJKLMNOPQRSTUVWX",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDE",
+          "theta": 0.0
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQR",
+        "sequenceId": 0,
+        "released": true,
+        "nodeDescription": "ABCDE",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQR",
+          "theta": 0.0
+        }
+      }
+    ],
+    "edgeStates": [
+      {
+        "edgeId": "ABCDEFGH",
+        "sequenceId": 0,
+        "released": false,
+        "edgeDescription": "ABCDEFG",
+        "trajectory": {
+          "degree": 0,
+          "knotVector": [
+            0.25,
+            0.25,
+            0.0,
+            0.0
+          ],
+          "controlPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            }
+          ]
+        }
+      },
+      {
+        "edgeId": "ABCDEFGHIJKLMNOPQRST",
+        "sequenceId": 0,
+        "released": true,
+        "edgeDescription": "ABCDEFGHI",
+        "trajectory": {
+          "degree": 0,
+          "knotVector": [
+            0.75,
+            0.25,
+            0.75
+          ],
+          "controlPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            }
+          ]
+        }
+      }
+    ],
+    "driving": true,
+    "actionStates": [
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRSTU",
+        "actionStatus": "RUNNING",
+        "actionType": "ABCDEFGHIJKLMNOPQRST",
+        "actionDescription": "ABCDEFGHIJKLMNOPQRS",
+        "resultDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRS",
+        "actionStatus": "RUNNING",
+        "actionType": "ABCDEF",
+        "actionDescription": "ABCDEFGHIJKLMNOPQRSTU",
+        "resultDescription": "ABCDEFGHI"
+      },
+      {
+        "actionId": "ABCD",
+        "actionStatus": "FAILED",
+        "actionType": "ABCDEFGHIJKLMNOPQRSTU",
+        "actionDescription": "ABCDEFGHIJ",
+        "resultDescription": "ABCDEFGHIJKLMNOPQRST"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+        "actionStatus": "WAITING",
+        "actionType": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+        "actionDescription": "ABCDEFGHIJKLMNOP",
+        "resultDescription": "ABCDEFGHIJKLMNOPQRSTUV"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMN",
+        "actionStatus": "FINISHED",
+        "actionType": "ABCDEFGHIJKLMNOPQRSTU",
+        "actionDescription": "ABCDEF",
+        "resultDescription": "ABCD"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOP",
+        "actionStatus": "INITIALIZING",
+        "actionType": "ABCD",
+        "actionDescription": "ABCDEFGHI",
+        "resultDescription": "ABCDEFGHIJKLMNOPQRSTUVW"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "actionStatus": "RUNNING",
+        "actionType": "ABCDE",
+        "actionDescription": "ABCDEFGHIJKLMN",
+        "resultDescription": "ABCDEFGHI"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "actionStatus": "FINISHED",
+        "actionType": "ABCDEFGHIJ",
+        "actionDescription": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "resultDescription": "ABCDEF"
+      },
+      {
+        "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "actionStatus": "RUNNING",
+        "actionType": "ABCDEFGHIJKLMNOP",
+        "actionDescription": "ABCD",
+        "resultDescription": "ABCDEFGHIJKLMNOPQ"
+      }
+    ],
+    "batteryState": {
+      "batteryCharge": 0.0,
+      "charging": true,
+      "batteryVoltage": 0.0,
+      "batteryHealth": 96.0,
+      "reach": 0.0
+    },
+    "operatingMode": "MANUAL",
+    "errors": [
+      {
+        "errorType": "ABCDEFGHIJKLM",
+        "errorLevel": "FATAL",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLM",
+            "referenceValue": "ABCDEFGHIJKLMNOPQR"
+          }
+        ],
+        "errorDescription": "ABCDEFGHIJKLMNOPQR",
+        "errorHint": "ABCDEF"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+        "errorLevel": "WARNING",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+          },
+          {
+            "referenceKey": "ABCDEFGH",
+            "referenceValue": "ABCDEFGHIJKL"
+          }
+        ],
+        "errorDescription": "ABCDEFGHIJKLMNOPQRSTU",
+        "errorHint": "ABCDEFGHIJKL"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLM",
+        "errorLevel": "FATAL",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJ",
+            "referenceValue": "ABCDEFGHIJ"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQR",
+            "referenceValue": "ABCDEFGHIJKLMNOPQ"
+          }
+        ],
+        "errorDescription": "ABCDEFGH",
+        "errorHint": "ABCDEFGHIJKLMNOPQRSTUVWX"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "errorLevel": "WARNING",
+        "errorReferences": [],
+        "errorDescription": "ABCDEFGHIJKL",
+        "errorHint": "ABCDEFGHIJKLMNOPQRSTU"
+      },
+      {
+        "errorType": "ABCDEFGH",
+        "errorLevel": "FATAL",
+        "errorReferences": [],
+        "errorDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+        "errorHint": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLMNOPQRS",
+        "errorLevel": "FATAL",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQR",
+            "referenceValue": "ABCDEFGHI"
+          },
+          {
+            "referenceKey": "ABCDEFGHI",
+            "referenceValue": "ABCDEFGHIJKLMN"
+          }
+        ],
+        "errorDescription": "ABCDEFGHIJKLM",
+        "errorHint": "ABCDEFGHIJKLMN"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "errorLevel": "WARNING",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+            "referenceValue": "ABCDEFGHI"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRS",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVW"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJK",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRS"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "referenceValue": "ABCDEFGHIJK"
+          }
+        ],
+        "errorDescription": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "errorHint": "ABCDEFGHIJKLMN"
+      },
+      {
+        "errorType": "ABCDEFGHIJKL",
+        "errorLevel": "FATAL",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOP",
+            "referenceValue": "ABCDEF"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQ",
+            "referenceValue": "ABCDEFGHIJKLMNOPQR"
+          },
+          {
+            "referenceKey": "ABCDEFG",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRST"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUV",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTU"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQR",
+            "referenceValue": "ABCDEFG"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMN",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "referenceValue": "ABCDEFG"
+          }
+        ],
+        "errorDescription": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "errorHint": "ABCDEFGH"
+      },
+      {
+        "errorType": "ABCDEFGHIJKLMNOPQRSTUVWX",
+        "errorLevel": "FATAL",
+        "errorReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVW",
+            "referenceValue": "ABCDEF"
+          },
+          {
+            "referenceKey": "ABCDEFG",
+            "referenceValue": "ABCDEFGHIJKLMNOPQR"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "referenceValue": "ABCDEFGHIJKLMNOP"
+          },
+          {
+            "referenceKey": "ABCDE",
+            "referenceValue": "ABCDEFGHIJKLMNOPQ"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJ",
+            "referenceValue": "ABCDEFGHIJKLMN"
+          }
+        ],
+        "errorDescription": "ABCDEFGH",
+        "errorHint": "ABCDEFGHIJKLMN"
+      }
+    ],
+    "safetyState": {
+      "eStop": "AUTOACK",
+      "fieldViolation": false
+    },
+    "maps": [
+      {
+        "mapId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "mapVersion": "ABCDE",
+        "mapStatus": "ENABLED",
+        "mapDescription": "ABCDEF"
+      },
+      {
+        "mapId": "ABCDEFGHIJKLMNOPQRST",
+        "mapVersion": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "mapStatus": "ENABLED",
+        "mapDescription": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+      },
+      {
+        "mapId": "ABCDEFGHIJKLM",
+        "mapVersion": "ABCDEFGHIJKLMNO",
+        "mapStatus": "DISABLED",
+        "mapDescription": "ABCDEFGHIJKLMNOP"
+      },
+      {
+        "mapId": "ABCDEFGHI",
+        "mapVersion": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "mapStatus": "DISABLED",
+        "mapDescription": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+      }
+    ],
+    "zoneSetId": "ABCDEFGHIJKLMNOPQ",
+    "paused": true,
+    "newBaseRequest": false,
+    "distanceSinceLastNode": 0.0,
+    "agvPosition": {
+      "x": 0.0,
+      "y": 0.0,
+      "theta": 0.0,
+      "mapId": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+      "positionInitialized": false,
+      "mapDescription": "ABCDE",
+      "localizationScore": 0.25,
+      "deviationRange": 0.0
+    },
+    "velocity": {
+      "vx": 0.0,
+      "vy": 0.0,
+      "omega": 0.0
+    },
+    "loads": [
+      {
+        "loadId": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "loadType": "ABCD",
+        "loadPosition": "ABCDEFGHIJK",
+        "boundingBoxReference": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "theta": 0.0
+        },
+        "loadDimensions": {
+          "length": 0.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "weight": 0.0
+      },
+      {
+        "loadId": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "loadType": "ABCDEFGHIJKLMNOPQRS",
+        "loadPosition": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "boundingBoxReference": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "theta": 0.0
+        },
+        "loadDimensions": {
+          "length": 0.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "weight": 0.0
+      },
+      {
+        "loadId": "ABCDEFGH",
+        "loadType": "ABCDE",
+        "loadPosition": "ABCDEFGHIJKLMNOPQRSTUV",
+        "boundingBoxReference": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "theta": 0.0
+        },
+        "loadDimensions": {
+          "length": 0.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "weight": 0.0
+      },
+      {
+        "loadId": "ABCDEFGHIJKL",
+        "loadType": "ABCDEF",
+        "loadPosition": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "boundingBoxReference": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "theta": 0.0
+        },
+        "loadDimensions": {
+          "length": 0.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "weight": 0.0
+      },
+      {
+        "loadId": "ABCDEFGHIJKLMNOPQRSTUVWX",
+        "loadType": "ABCDEFGHIJKLMNO",
+        "loadPosition": "ABCDEF",
+        "boundingBoxReference": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "theta": 0.0
+        },
+        "loadDimensions": {
+          "length": 0.0,
+          "width": 0.0,
+          "height": 0.0
+        },
+        "weight": 0.0
+      }
+    ],
+    "information": [
+      {
+        "infoType": "ABCDEFGHIJKLMNOPQ",
+        "infoLevel": "INFO",
+        "infoReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJ",
+            "referenceValue": "ABCD"
+          },
+          {
+            "referenceKey": "ABCD",
+            "referenceValue": "ABCDEFGHIJKLM"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJ",
+            "referenceValue": "ABCDEFGHIJKLMNOPQR"
+          }
+        ],
+        "infoDescription": "ABCDEFGHIJKL"
+      },
+      {
+        "infoType": "ABCDEFGHIJKLM",
+        "infoLevel": "DEBUG",
+        "infoReferences": [],
+        "infoDescription": "ABCD"
+      },
+      {
+        "infoType": "ABCDEFGHIJKLM",
+        "infoLevel": "INFO",
+        "infoReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQ",
+            "referenceValue": "ABCDEFGHI"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVW",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTU"
+          }
+        ],
+        "infoDescription": "ABCDEFGHIJKLMNOPQRSTU"
+      },
+      {
+        "infoType": "ABCDEFGHIJKLMNOPQRS",
+        "infoLevel": "DEBUG",
+        "infoReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRS"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJ",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRST"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "referenceValue": "ABCDEFGHIJKL"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRST",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUV"
+          }
+        ],
+        "infoDescription": "ABCDEFGHIJKLMN"
+      },
+      {
+        "infoType": "ABCDEFGHIJK",
+        "infoLevel": "INFO",
+        "infoReferences": [
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQR",
+            "referenceValue": "ABCDEFGHIJKLMNOPQR"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKL",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTU"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOP",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRST"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJK",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+          },
+          {
+            "referenceKey": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+            "referenceValue": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+          }
+        ],
+        "infoDescription": "ABCDEFGHIJKLMN"
+      }
+    ]
+  }
+  
+  

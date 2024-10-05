@@ -1,0 +1,681 @@
+
+
+{
+    "headerId": 0,
+    "timestamp": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "version": "ABCDEFGHIJ",
+    "manufacturer": "ABCDEFGHIJKLMNOPQRSTUV",
+    "serialNumber": "ABCDEFGHIJKLM",
+    "orderId": "ABCDEFGHIJKLMNOPQRSTUVWX",
+    "orderUpdateId": 0,
+    "nodes": [
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQRST",
+        "sequenceId": 0,
+        "released": false,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+            "actionType": "ABCDEF",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHIJK",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMN",
+                "value": []
+              },
+              {
+                "key": "ABCD",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJKLM",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVWXY"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVW"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUV",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOP",
+                "value": {}
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRST",
+            "actionType": "ABCDEFGHI",
+            "blockingType": "SOFT",
+            "actionDescription": "ABCDEFGHIJKLMNOP",
+            "actionParameters": [
+              {
+                "key": "ABCDEFG",
+                "value": []
+              },
+              {
+                "key": "ABCDEFGH",
+                "value": "ABCDEFGHIJKLMNOPQ"
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDE",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTU",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJKLMNOPQR",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRS",
+                "value": {}
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDE",
+            "actionType": "ABCDEFGHIJKLMN",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHIJKLMNOPQRSTUVW",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQ",
+                "value": []
+              },
+              {
+                "key": "ABCDEFGH",
+                "value": []
+              },
+              {
+                "key": "ABCDEFGHI",
+                "value": 0.0
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJK",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "theta": 2.75,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": 0.0,
+          "mapDescription": "ABCDEFGHIJKLMNO"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQRS",
+        "sequenceId": 0,
+        "released": true,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+            "actionType": "ABCDEFGH",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJKLMNOPQRS",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVW",
+                "value": {}
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFG",
+            "actionType": "ABCD",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHIJKLMNOPQRSTU",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJK",
+                "value": 0.0
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDE",
+          "theta": -1.25,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": -2.25,
+          "mapDescription": "ABCDE"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQR",
+        "sequenceId": 0,
+        "released": false,
+        "actions": [],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQ",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDE",
+          "theta": -0.5,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": 2.5,
+          "mapDescription": "ABCDEFGHIJKLMNOPQRSTUVWX"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNO",
+        "sequenceId": 0,
+        "released": false,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTU",
+            "actionType": "ABCDEFGHIJKLMNOP",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJKLMNOPQ",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKL",
+                "value": 0.0
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQ",
+            "actionType": "ABCDEFGHIJKLMNOP",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNO",
+                "value": "ABCDEFGHIJKLM"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+                "value": 0.0
+              },
+              {
+                "key": "ABCDEFGHIJ",
+                "value": "ABCDEFGHIJKLMNO"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTU",
+                "value": "ABCDEFGHIJKLMNOPQRS"
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+            "actionType": "ABCDEFGHIJKLMNOPQR",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHI",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+                "value": []
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRST",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJ",
+                "value": {}
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMN",
+            "actionType": "ABCDE",
+            "blockingType": "SOFT",
+            "actionDescription": "ABCDEFGH",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWX",
+                "value": true
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRST",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGHIJKLMN",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJKLMN",
+                "value": true
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRS",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGHIJKLMN",
+                "value": 0.0
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQ",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "theta": 2.25,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": -1.25,
+          "mapDescription": "ABCDEFGHIJKLMNOPQRS"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQRSTU",
+        "sequenceId": 0,
+        "released": true,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQR",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "blockingType": "NONE",
+            "actionDescription": "ABCD",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJK",
+                "value": "ABCDEFGHIJKLMNOPQRS"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQ",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVW"
+              },
+              {
+                "key": "ABCDEFGHIJKL",
+                "value": false
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQRSTU",
+          "theta": 0.75,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": -2.0,
+          "mapDescription": "ABCDEFGHIJKLMNOPQRST"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMNOPQRSTUV",
+        "sequenceId": 0,
+        "released": false,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUV",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHI",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVW",
+                "value": "ABCDEFGH"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWX",
+                "value": true
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOP",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVW"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOP",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGH",
+                "value": 0.0
+              },
+              {
+                "key": "ABCDEFGHI",
+                "value": 0.0
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+                "value": 0.0
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRS",
+                "value": false
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRST",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJ",
+            "actionParameters": [
+              {
+                "key": "ABCDE",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRS",
+                "value": 0.0
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQR",
+            "actionType": "ABCDEFGH",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJKLM",
+            "actionParameters": [
+              {
+                "key": "ABCDE",
+                "value": 0.0
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQR",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQ",
+          "theta": -2.75,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": 2.5,
+          "mapDescription": "ABCDEF"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJKLMN",
+        "sequenceId": 0,
+        "released": true,
+        "actions": [],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDEFGHIJKLMNOPQRST",
+          "theta": 1.75,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": 3.0,
+          "mapDescription": "ABCDEFGHIJKLMNOPQ"
+        }
+      },
+      {
+        "nodeId": "ABCDEFGHIJK",
+        "sequenceId": 0,
+        "released": false,
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+            "actionType": "ABCDEFGH",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFGHIJKLMN",
+            "actionParameters": [
+              {
+                "key": "ABCDEF",
+                "value": "ABCDEFGHIJKLMNOPQRSTUVW"
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEF",
+            "actionType": "ABCDEFGHIJKLMNOPQRS",
+            "blockingType": "SOFT",
+            "actionDescription": "ABCDE",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRST",
+                "value": true
+              },
+              {
+                "key": "ABCDEFGHIJKLMN",
+                "value": []
+              }
+            ]
+          }
+        ],
+        "nodeDescription": "ABCDEFGHIJKLMNOPQRST",
+        "nodePosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "mapId": "ABCDE",
+          "theta": 1.25,
+          "allowedDeviationXY": 0.0,
+          "allowedDeviationTheta": 1.75,
+          "mapDescription": "ABCDEFGHIJKLMNOPQRSTU"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeId": "ABCDEFGHI",
+        "sequenceId": 0,
+        "released": true,
+        "startNodeId": "ABCDEFGHIJKLMNOPQRS",
+        "endNodeId": "ABCDEFGHIJKLMNOPQRST",
+        "actions": [
+          {
+            "actionId": "ABCDEF",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVW",
+            "blockingType": "SOFT",
+            "actionDescription": "ABCDEFGHIJ",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTU",
+                "value": "ABCDEFGHIJKLMNOPQR"
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHI",
+            "actionType": "ABCDEFGHIJK",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEFG",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNO",
+                "value": false
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGHIJK",
+                "value": 0.0
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVW",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "value": "ABCDE"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOP",
+                "value": []
+              }
+            ]
+          },
+          {
+            "actionId": "ABCDEFGHIJKLMN",
+            "actionType": "ABCDEFGHIJKLMNOP",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJ",
+            "actionParameters": []
+          }
+        ],
+        "edgeDescription": "ABCDEFGHIJKLMNOPQRS",
+        "maxSpeed": 0.0,
+        "maxHeight": 0.0,
+        "minHeight": 0.0,
+        "orientation": 0.0,
+        "orientationType": "ABCDEFGHIJKLMNOPQR",
+        "direction": "ABCDEFGHIJKLM",
+        "rotationAllowed": true,
+        "maxRotationSpeed": 0.0,
+        "length": 0.0,
+        "trajectory": {
+          "degree": 0,
+          "knotVector": [
+            0.0
+          ],
+          "controlPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            }
+          ]
+        },
+        "corridor": {
+          "leftWidth": 0.0,
+          "rightWidth": 0.0,
+          "corridorRefPoint": "KINEMATICCENTER"
+        }
+      },
+      {
+        "edgeId": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "sequenceId": 0,
+        "released": true,
+        "startNodeId": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+        "endNodeId": "ABCDEFGHIJK",
+        "actions": [],
+        "edgeDescription": "ABCDEFGHIJKLMNOPQ",
+        "maxSpeed": 0.0,
+        "maxHeight": 0.0,
+        "minHeight": 0.0,
+        "orientation": -2.25,
+        "orientationType": "ABCDEFGHIJKLMNOP",
+        "direction": "ABCDEFGHIJK",
+        "rotationAllowed": true,
+        "maxRotationSpeed": 0.0,
+        "length": 0.0,
+        "trajectory": {
+          "degree": 0,
+          "knotVector": [
+            0.25,
+            0.75,
+            0.25,
+            0.0
+          ],
+          "controlPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            }
+          ]
+        },
+        "corridor": {
+          "leftWidth": 0.0,
+          "rightWidth": 0.0,
+          "corridorRefPoint": "KINEMATICCENTER"
+        }
+      },
+      {
+        "edgeId": "ABCDE",
+        "sequenceId": 0,
+        "released": false,
+        "startNodeId": "ABCDEFG",
+        "endNodeId": "ABCDEFGHIJ",
+        "actions": [
+          {
+            "actionId": "ABCDEFGHIJ",
+            "actionType": "ABCDEFG",
+            "blockingType": "HARD",
+            "actionDescription": "ABCDEF",
+            "actionParameters": [
+              {
+                "key": "ABCDEFGHIJKLMNOPQRSTU",
+                "value": "ABCDEFGHIJKLMN"
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOPQR",
+                "value": {}
+              },
+              {
+                "key": "ABCDEFGHIJKLMNOP",
+                "value": []
+              }
+            ]
+          }
+        ],
+        "edgeDescription": "ABCDEFGHIJKLMNOPQRS",
+        "maxSpeed": 0.0,
+        "maxHeight": 0.0,
+        "minHeight": 0.0,
+        "orientation": 2.75,
+        "orientationType": "ABCDEFG",
+        "direction": "ABCDEFGHIJKLMNOPQRS",
+        "rotationAllowed": true,
+        "maxRotationSpeed": 0.0,
+        "length": 0.0,
+        "trajectory": {
+          "degree": 0,
+          "knotVector": [
+            0.25,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "controlPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0,
+              "weight": 0.0
+            }
+          ]
+        },
+        "corridor": {
+          "leftWidth": 0.0,
+          "rightWidth": 0.0,
+          "corridorRefPoint": "KINEMATICCENTER"
+        }
+      }
+    ],
+    "zoneSetId": "ABCDE"
+  }
+  
+  

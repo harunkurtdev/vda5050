@@ -1,0 +1,674 @@
+
+
+{
+    "version": "ABCDEFGHI",
+    "manufacturer": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "serialNumber": "ABCDEFGHIJ",
+    "typeSpecification": {
+      "seriesName": "ABCDEFGHIJKLMNOPQRS",
+      "agvKinematic": "OMNI",
+      "agvClass": "FORKLIFT",
+      "maxLoadMass": 0.0,
+      "localizationTypes": [
+        "GRID",
+        "RFID",
+        "RFID",
+        "RFID",
+        "NATURAL"
+      ],
+      "navigationTypes": [
+        "AUTONOMOUS",
+        "PHYSICAL_LINE_GUIDED",
+        "AUTONOMOUS",
+        "PHYSICAL_LINE_GUIDED",
+        "AUTONOMOUS",
+        "VIRTUAL_LINE_GUIDED",
+        "VIRTUAL_LINE_GUIDED",
+        "AUTONOMOUS"
+      ],
+      "seriesDescription": "ABCDEFGHIJKLMN"
+    },
+    "physicalParameters": {
+      "speedMin": 0.0,
+      "speedMax": 0.0,
+      "accelerationMax": 0.0,
+      "decelerationMax": 0.0,
+      "heightMax": 0.0,
+      "width": 0.0,
+      "length": 0.0,
+      "heightMin": 0.0
+    },
+    "protocolLimits": {
+      "maxStringLens": {
+        "msgLen": 0,
+        "topicSerialLen": 0,
+        "topicElemLen": 0,
+        "idLen": 0,
+        "idNumericalOnly": true,
+        "enumLen": 0,
+        "loadIdLen": 0
+      },
+      "maxArrayLens": {
+        "order.nodes": 0,
+        "order.edges": 0,
+        "node.actions": 0,
+        "edge.actions": 0,
+        "actions.actionsParameters": 0,
+        "instantActions": 0,
+        "trajectory.knotVector": 0,
+        "trajectory.controlPoints": 0,
+        "state.nodeStates": 0,
+        "state.edgeStates": 0,
+        "state.loads": 0,
+        "state.actionStates": 0,
+        "state.errors": 0,
+        "state.information": 0,
+        "error.errorReferences": 0,
+        "information.infoReferences": 0
+      },
+      "timing": {
+        "minOrderInterval": 0.0,
+        "minStateInterval": 0.0,
+        "defaultStateInterval": 0.0,
+        "visualizationInterval": 0.0
+      }
+    },
+    "protocolFeatures": {
+      "optionalParameters": [
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+          "support": "SUPPORTED",
+          "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "support": "SUPPORTED",
+          "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQ",
+          "support": "REQUIRED",
+          "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+          "support": "SUPPORTED",
+          "description": "ABCDEFGHIJKLMNOPQRS"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMN",
+          "support": "REQUIRED",
+          "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQRS",
+          "support": "SUPPORTED",
+          "description": "ABCDEF"
+        },
+        {
+          "parameter": "ABCDEFGHIJK",
+          "support": "SUPPORTED",
+          "description": "ABCDEFGHIJKL"
+        },
+        {
+          "parameter": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+          "support": "REQUIRED",
+          "description": "ABCDEFGHIJ"
+        }
+      ],
+      "agvActions": [
+        {
+          "actionType": "ABCD",
+          "actionScopes": [],
+          "actionDescription": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+          "actionParameters": [
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+              "valueDataType": "INTEGER",
+              "description": "ABCDEFGHIJKLMNOPQRST",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEF",
+              "valueDataType": "BOOL",
+              "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJK",
+              "valueDataType": "BOOL",
+              "description": "ABCDEFGHIJKL",
+              "isOptional": true
+            }
+          ],
+          "resultDescription": "ABCDEFGHIJKLMN",
+          "blockingTypes": []
+        },
+        {
+          "actionType": "ABCDE",
+          "actionScopes": [],
+          "actionDescription": "ABCDEFGHI",
+          "actionParameters": [
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+              "valueDataType": "NUMBER",
+              "description": "ABCDEFGHIJKLMNOPQRSTUVW",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQ",
+              "valueDataType": "FLOAT",
+              "description": "ABCDEFGHIJKL",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOP",
+              "valueDataType": "ARRAY",
+              "description": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+              "isOptional": true
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+              "valueDataType": "ARRAY",
+              "description": "ABCDEFGHIJK",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFG",
+              "valueDataType": "INTEGER",
+              "description": "ABCDEFGHIJKLMNO",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLM",
+              "valueDataType": "OBJECT",
+              "description": "ABCDEFGHIJKLMN",
+              "isOptional": false
+            }
+          ],
+          "resultDescription": "ABCDEFGHIJKLMNOPQ",
+          "blockingTypes": []
+        },
+        {
+          "actionType": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+          "actionScopes": [
+            "NODE",
+            "NODE",
+            "EDGE",
+            "INSTANT",
+            "INSTANT",
+            "EDGE"
+          ],
+          "actionDescription": "ABCDEFGHI",
+          "actionParameters": [
+            {
+              "key": "ABCDEFGH",
+              "valueDataType": "FLOAT",
+              "description": "ABCDEFGHIJKLMN",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWX",
+              "valueDataType": "NUMBER",
+              "description": "ABCDEFGHIJKL",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNO",
+              "valueDataType": "FLOAT",
+              "description": "ABCDEFGHIJKLMNOPQRSTUVWX",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+              "valueDataType": "NUMBER",
+              "description": "ABCDEFGHIJKL",
+              "isOptional": false
+            }
+          ],
+          "resultDescription": "ABCDEFGHIJKLMNOPQRST",
+          "blockingTypes": []
+        },
+        {
+          "actionType": "ABCDEFGHIJ",
+          "actionScopes": [
+            "NODE"
+          ],
+          "actionDescription": "ABCDEFGHIJKL",
+          "actionParameters": [
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUV",
+              "valueDataType": "FLOAT",
+              "description": "ABCDEFGHIJKLMNOPQR",
+              "isOptional": true
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              "valueDataType": "OBJECT",
+              "description": "ABCDEFGHIJKLMNOPQRS",
+              "isOptional": false
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRS",
+              "valueDataType": "FLOAT",
+              "description": "ABCDE",
+              "isOptional": true
+            },
+            {
+              "key": "ABCDEFGHIJKLMNOPQRSTU",
+              "valueDataType": "NUMBER",
+              "description": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+              "isOptional": false
+            }
+          ],
+          "resultDescription": "ABCDEFGHIJKLMNOPQRSTUV",
+          "blockingTypes": []
+        }
+      ]
+    },
+    "agvGeometry": {
+      "wheelDefinitions": [
+        {
+          "type": "MECANUM",
+          "isActiveDriven": false,
+          "isActiveSteered": false,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        },
+        {
+          "type": "MECANUM",
+          "isActiveDriven": false,
+          "isActiveSteered": false,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLMNOPQRSTUVWXYZA"
+        },
+        {
+          "type": "FIXED",
+          "isActiveDriven": true,
+          "isActiveSteered": true,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGH"
+        },
+        {
+          "type": "DRIVE",
+          "isActiveDriven": false,
+          "isActiveSteered": false,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHI"
+        },
+        {
+          "type": "FIXED",
+          "isActiveDriven": false,
+          "isActiveSteered": true,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLMNO"
+        },
+        {
+          "type": "MECANUM",
+          "isActiveDriven": true,
+          "isActiveSteered": false,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLM"
+        },
+        {
+          "type": "FIXED",
+          "isActiveDriven": false,
+          "isActiveSteered": true,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLMNOPQRSTUVW"
+        },
+        {
+          "type": "FIXED",
+          "isActiveDriven": false,
+          "isActiveSteered": true,
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "theta": 0.0
+          },
+          "diameter": 0.0,
+          "width": 0.0,
+          "centerDisplacement": 0.0,
+          "constraints": "ABCDEFGHIJKLMNOPQRST"
+        }
+      ],
+      "envelopes2d": [
+        {
+          "set": "ABCDEFGHIJKLMNOP",
+          "polygonPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            },
+            {
+              "x": 0.0,
+              "y": 0.0
+            }
+          ],
+          "description": "ABCDEFGHIJKLMNOP"
+        },
+        {
+          "set": "ABCDEFGHIJKLMNOPQRST",
+          "polygonPoints": [
+            {
+              "x": 0.0,
+              "y": 0.0
+            }
+          ],
+          "description": "ABCDEFGHIJKLMNOP"
+        }
+      ],
+      "envelopes3d": [
+        {
+          "set": "ABCDEFGHI",
+          "format": "ABCDEFGHI",
+          "data": {},
+          "url": "ABCDEFGHIJKLMNOPQRS",
+          "description": 0
+        },
+        {
+          "set": "ABCDEFGHIJKLMN",
+          "format": "ABCDEF",
+          "data": {},
+          "url": "ABCDEFGHIJKLMNOPQRSTU",
+          "description": 0
+        },
+        {
+          "set": "ABCDEFGHIJKL",
+          "format": "ABCDEFGHIJ",
+          "data": {},
+          "url": "ABCDEFGHIJKLMNOPQRST",
+          "description": 0
+        },
+        {
+          "set": "ABCDEFGHIJKLMNOPQR",
+          "format": "ABCDEFGHIJ",
+          "data": {},
+          "url": "ABCDEFGHIJK",
+          "description": 0
+        },
+        {
+          "set": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "format": "ABCDEFGHI",
+          "data": {},
+          "url": "ABCDEFGHIJKLMNOPQRSTUV",
+          "description": 0
+        }
+      ]
+    },
+    "loadSpecification": {
+      "loadPositions": [
+        "ABCDEFG",
+        "ABCDEFGHIJKL",
+        "ABCDEFGHIJKLMNO",
+        "ABCDEFGHIJKLMNOPQRST",
+        "ABCDEFGHIJKLMNOPQRSTU",
+        "ABCDEFGHIJKLM",
+        "ABCDEFGHIJKLMNOPQRSTUVW",
+        "ABCDEFGHIJKLMNOPQRSTUVW"
+      ],
+      "loadSets": [
+        {
+          "setName": "ABCDEFGHIJK",
+          "loadType": "ABCDEFGHIJKLMNOPQRSTUVWXY",
+          "loadPositions": [],
+          "boundingBoxReference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "theta": 0.0
+          },
+          "loadDimensions": {
+            "length": 0.0,
+            "width": 0.0,
+            "height": 0.0
+          },
+          "maxWeight": 0.0,
+          "minLoadhandlingHeight": 0.0,
+          "maxLoadhandlingHeight": 0.0,
+          "minLoadhandlingDepth": 0.0,
+          "maxLoadhandlingDepth": 0.0,
+          "minLoadhandlingTilt": 0.0,
+          "maxLoadhandlingTilt": 0.0,
+          "agvSpeedLimit": 0.0,
+          "agvAccelerationLimit": 0.0,
+          "agvDecelerationLimit": 0.0,
+          "pickTime": 0.0,
+          "dropTime": 0.0,
+          "description": "ABCDEFGHIJK"
+        },
+        {
+          "setName": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+          "loadType": "ABCDEFGHIJKLMN",
+          "loadPositions": [
+            "ABCDEFGHIJ"
+          ],
+          "boundingBoxReference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "theta": 0.0
+          },
+          "loadDimensions": {
+            "length": 0.0,
+            "width": 0.0,
+            "height": 0.0
+          },
+          "maxWeight": 0.0,
+          "minLoadhandlingHeight": 0.0,
+          "maxLoadhandlingHeight": 0.0,
+          "minLoadhandlingDepth": 0.0,
+          "maxLoadhandlingDepth": 0.0,
+          "minLoadhandlingTilt": 0.0,
+          "maxLoadhandlingTilt": 0.0,
+          "agvSpeedLimit": 0.0,
+          "agvAccelerationLimit": 0.0,
+          "agvDecelerationLimit": 0.0,
+          "pickTime": 0.0,
+          "dropTime": 0.0,
+          "description": "ABCDEFGHIJKL"
+        },
+        {
+          "setName": "ABCDEFGHIJKLMNOPQRSTU",
+          "loadType": "ABCDEFGHIJKLMNOP",
+          "loadPositions": [
+            "ABCDEFGHIJKLMNOP",
+            "ABCD",
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+            "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "ABCDEFGHIJKLMNOPQRSTUVW"
+          ],
+          "boundingBoxReference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "theta": 0.0
+          },
+          "loadDimensions": {
+            "length": 0.0,
+            "width": 0.0,
+            "height": 0.0
+          },
+          "maxWeight": 0.0,
+          "minLoadhandlingHeight": 0.0,
+          "maxLoadhandlingHeight": 0.0,
+          "minLoadhandlingDepth": 0.0,
+          "maxLoadhandlingDepth": 0.0,
+          "minLoadhandlingTilt": 0.0,
+          "maxLoadhandlingTilt": 0.0,
+          "agvSpeedLimit": 0.0,
+          "agvAccelerationLimit": 0.0,
+          "agvDecelerationLimit": 0.0,
+          "pickTime": 0.0,
+          "dropTime": 0.0,
+          "description": "ABCDEF"
+        },
+        {
+          "setName": "ABCDEFGHI",
+          "loadType": "ABCDEFGHIJKLMNOPQRSTU",
+          "loadPositions": [],
+          "boundingBoxReference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "theta": 0.0
+          },
+          "loadDimensions": {
+            "length": 0.0,
+            "width": 0.0,
+            "height": 0.0
+          },
+          "maxWeight": 0.0,
+          "minLoadhandlingHeight": 0.0,
+          "maxLoadhandlingHeight": 0.0,
+          "minLoadhandlingDepth": 0.0,
+          "maxLoadhandlingDepth": 0.0,
+          "minLoadhandlingTilt": 0.0,
+          "maxLoadhandlingTilt": 0.0,
+          "agvSpeedLimit": 0.0,
+          "agvAccelerationLimit": 0.0,
+          "agvDecelerationLimit": 0.0,
+          "pickTime": 0.0,
+          "dropTime": 0.0,
+          "description": "ABCDEFGHIJ"
+        },
+        {
+          "setName": "ABCDEFGH",
+          "loadType": "ABCDEFGHIJKLMNOPQRSTUVW",
+          "loadPositions": [
+            "ABCDEFGHIJK",
+            "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "ABCDEFGHI"
+          ],
+          "boundingBoxReference": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "theta": 0.0
+          },
+          "loadDimensions": {
+            "length": 0.0,
+            "width": 0.0,
+            "height": 0.0
+          },
+          "maxWeight": 0.0,
+          "minLoadhandlingHeight": 0.0,
+          "maxLoadhandlingHeight": 0.0,
+          "minLoadhandlingDepth": 0.0,
+          "maxLoadhandlingDepth": 0.0,
+          "minLoadhandlingTilt": 0.0,
+          "maxLoadhandlingTilt": 0.0,
+          "agvSpeedLimit": 0.0,
+          "agvAccelerationLimit": 0.0,
+          "agvDecelerationLimit": 0.0,
+          "pickTime": 0.0,
+          "dropTime": 0.0,
+          "description": "ABCDEFGH"
+        }
+      ]
+    },
+    "headerId": 0,
+    "timestamp": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+    "vehicleConfig": {
+      "versions": [
+        {
+          "key": "ABCDEFGHI",
+          "value": "ABCDEFGHIJKLMNOPQRSTUV"
+        },
+        {
+          "key": "ABCDEFGHIJKLMNOPQRST",
+          "value": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC"
+        },
+        {
+          "key": "ABCDEFGH",
+          "value": "ABCDE"
+        },
+        {
+          "key": "ABCDEFGH",
+          "value": "ABCDEFG"
+        }
+      ],
+      "network": {
+        "dnsServers": [],
+        "localIpAddress": "ABCDEFGHIJKLMNOPQRSTUVW",
+        "ntpServers": [
+          "ABCDEFGHIJKLMNOPQR",
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "ABCDEFGHIJK"
+        ],
+        "netmask": "ABCDEFGHIJKLMN",
+        "defaultGateway": "ABCDEFGHIJKLMNOPQRSTUVWXYZA"
+      }
+    }
+  }
+  
+  

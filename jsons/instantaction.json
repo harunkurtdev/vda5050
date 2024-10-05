@@ -1,0 +1,28 @@
+{
+    "headerId": 0,
+    "timestamp": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "version": "ABCDEFGHIJ",
+    "manufacturer": "ABCDEFGHIJKLMNOPQRSTUV",
+    "serialNumber": "ABCDEFGHIJKLM",
+    "actions": [
+        {
+            "actionId": "ABCDEFG",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVWXYZABC",
+            "blockingType": "SOFT",
+            "actionDescription": "ABCDEFGH",
+            "actionParameters": []
+        },
+        {
+            "actionId": "ABCDEFGHIJKLMNOPQRSTUVWX",
+            "actionType": "ABCDEFGHIJKLMNOPQRSTUVWXYZAB",
+            "blockingType": "NONE",
+            "actionDescription": "ABCDEFGHIJKLMNOPQRSTU",
+            "actionParameters": [
+                {
+                    "key": "ABCDEFGHIJKLMNOPQRSTUVWXYZA",
+                    "value": false
+                }
+            ]
+        }
+    ]
+}

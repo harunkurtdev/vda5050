@@ -1,0 +1,8 @@
+{
+    "headerId": 1,
+    "timestamp": "2023-10-05T12:34:56.78Z",
+    "version": "1.3.2",
+    "manufacturer": "AGV Manufacturer Inc.",
+    "serialNumber": "AGV123456789",
+    "connectionState": "ONLINE"
+}
