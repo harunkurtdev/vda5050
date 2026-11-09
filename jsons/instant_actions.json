@@ -1,0 +1,23 @@
+{
+  "headerId": 5,
+  "timestamp": "2025-03-01T12:36:00.000Z",
+  "version": "3.0.0",
+  "manufacturer": "ExampleRobotics",
+  "serialNumber": "AGV-0001",
+  "actions": [
+    {
+      "actionType": "startPause",
+      "actionId": "ia-001",
+      "blockingType": "NONE",
+      "actionParameters": []
+    },
+    {
+      "actionType": "cancelOrder",
+      "actionId": "ia-002",
+      "blockingType": "NONE",
+      "actionParameters": [
+        { "key": "orderId", "value": "order-0001" }
+      ]
+    }
+  ]
+}

@@ -1,39 +1,68 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# vda5050
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+Dart data models for the **VDA 5050 v3.0.0** interface between mobile robots
+(AGV/AMR) and fleet control. Every message maps 1:1 to its JSON Schema and
+provides `fromJson` / `toJson` for round-tripping VDA 5050 JSON over MQTT.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+## Messages
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+| Class | Direction | Topic |
+|-------|-----------|-------|
+| `Order` | fleet → robot | `order` |
+| `InstantActions` | fleet → robot | `instantActions` |
+| `State` | robot → fleet | `state` |
+| `Connection` | broker/robot → fleet | `connection` |
+| `Visualization` | robot → viz | `visualization` |
+| `Factsheet` | robot → fleet | `factsheet` |
+| `ZoneSetMessage` | fleet → robot | `zoneSet` |
+| `Responses` | fleet → robot | `responses` |
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Shared value types (`Action`, `NodePosition`, `Trajectory`,
+`MobileRobotPosition`, `Velocity`, `PowerSupply`, …) live in `src/common.dart`
+and are re-exported from the top-level library.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
 ```dart
-const like = 'sample';
+import 'dart:convert';
+import 'package:vda5050/vda5050.dart';
+
+// Parse an incoming message.
+final order = Order.fromJson(jsonDecode(payload) as Map<String, dynamic>);
+
+// Build and serialize one.
+final ack = Connection(
+  headerId: 1,
+  timestamp: '2025-03-01T12:34:56.789Z',
+  version: vda5050Version, // "3.0.0"
+  manufacturer: 'ExampleRobotics',
+  serialNumber: 'AGV-0001',
+  connectionState: 'ONLINE',
+);
+final wire = jsonEncode(ack.toJson());
 ```
 
-## Additional information
+Enum-valued fields (`blockingType`, `operatingMode`, `connectionState`, …) are
+kept as `String` to round-trip unknown/extended values safely; the accepted
+values are documented in each field's doc comment.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Conventions
+
+- Wire JSON keys are **camelCase**, matching the VDA 5050 JSON schemas exactly.
+- Optional fields are omitted from `toJson()` when `null`; required fields are
+  always emitted.
+- Numeric fields are parsed as `double` where the schema says `number`, so an
+  integer literal in JSON (`0`) is accepted.
+
+## Reference
+
+- Schemas / spec: `~/nav2_ws/src/VDA5050/json_schemas/*.schema` (tag `3.0.0`).
+- Example payloads for every message: [`jsons/`](jsons/).
+
+## Development
+
+```bash
+dart pub get
+dart analyze
+dart test
+```

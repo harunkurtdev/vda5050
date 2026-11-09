@@ -1,59 +1,80 @@
-// src/state.dart
+// VDA 5050 v3.0.0 `state` message (mobile robot -> fleet control).
+//
+// Schema: json_schemas/state.schema
+
+import 'common.dart';
+
 class State {
   int? headerId;
   String? timestamp;
   String? version;
   String? manufacturer;
   String? serialNumber;
+  List<MapState>? maps;
+  List<ZoneSetState>? zoneSets;
   String? orderId;
   int? orderUpdateId;
   String? lastNodeId;
   int? lastNodeSequenceId;
-  List<NodeStates>? nodeStates;
-  List<EdgeStates>? edgeStates;
+  List<NodeState>? nodeStates;
+  List<EdgeState>? edgeStates;
+  PlannedPath? plannedPath;
+  IntermediatePath? intermediatePath;
+  MobileRobotPosition? mobileRobotPosition;
+  Velocity? velocity;
+  List<Load>? loads;
   bool? driving;
-  List<ActionStates>? actionStates;
-  BatteryState? batteryState;
-  String? operatingMode;
-  List<Errors>? errors;
-  SafetyState? safetyState;
-  List<Maps>? maps;
-  String? zoneSetId;
   bool? paused;
   bool? newBaseRequest;
-  int? distanceSinceLastNode;
-  AgvPosition? agvPosition;
-  Velocity? velocity;
-  List<Loads>? loads;
-  List<Information>? information;
+  List<ZoneRequest>? zoneRequests;
+  List<EdgeRequest>? edgeRequests;
+  double? distanceSinceLastNode;
+  List<ActionState>? actionStates;
+  List<ActionState>? instantActionStates;
+  List<ActionState>? zoneActionStates;
+  PowerSupply? powerSupply;
 
-  State(
-      {this.headerId,
-      this.timestamp,
-      this.version,
-      this.manufacturer,
-      this.serialNumber,
-      this.orderId,
-      this.orderUpdateId,
-      this.lastNodeId,
-      this.lastNodeSequenceId,
-      this.nodeStates,
-      this.edgeStates,
-      this.driving,
-      this.actionStates,
-      this.batteryState,
-      this.operatingMode,
-      this.errors,
-      this.safetyState,
-      this.maps,
-      this.zoneSetId,
-      this.paused,
-      this.newBaseRequest,
-      this.distanceSinceLastNode,
-      this.agvPosition,
-      this.velocity,
-      this.loads,
-      this.information});
+  /// One of: STARTUP, AUTOMATIC, SEMIAUTOMATIC, INTERVENED, MANUAL, SERVICE,
+  /// TEACH_IN.
+  String? operatingMode;
+  List<StateError>? errors;
+  List<Info>? information;
+  SafetyState? safetyState;
+
+  State({
+    this.headerId,
+    this.timestamp,
+    this.version,
+    this.manufacturer,
+    this.serialNumber,
+    this.maps,
+    this.zoneSets,
+    this.orderId,
+    this.orderUpdateId,
+    this.lastNodeId,
+    this.lastNodeSequenceId,
+    this.nodeStates,
+    this.edgeStates,
+    this.plannedPath,
+    this.intermediatePath,
+    this.mobileRobotPosition,
+    this.velocity,
+    this.loads,
+    this.driving,
+    this.paused,
+    this.newBaseRequest,
+    this.zoneRequests,
+    this.edgeRequests,
+    this.distanceSinceLastNode,
+    this.actionStates,
+    this.instantActionStates,
+    this.zoneActionStates,
+    this.powerSupply,
+    this.operatingMode,
+    this.errors,
+    this.information,
+    this.safetyState,
+  });
 
   State.fromJson(Map<String, dynamic> json) {
     headerId = json['headerId'];
@@ -61,639 +82,554 @@ class State {
     version = json['version'];
     manufacturer = json['manufacturer'];
     serialNumber = json['serialNumber'];
+    maps = asList(json['maps'], MapState.fromJson);
+    zoneSets = asList(json['zoneSets'], ZoneSetState.fromJson);
     orderId = json['orderId'];
     orderUpdateId = json['orderUpdateId'];
     lastNodeId = json['lastNodeId'];
     lastNodeSequenceId = json['lastNodeSequenceId'];
-    if (json['nodeStates'] != null) {
-      nodeStates = <NodeStates>[];
-      json['nodeStates'].forEach((v) {
-        nodeStates!.add(new NodeStates.fromJson(v));
-      });
-    }
-    if (json['edgeStates'] != null) {
-      edgeStates = <EdgeStates>[];
-      json['edgeStates'].forEach((v) {
-        edgeStates!.add(new EdgeStates.fromJson(v));
-      });
-    }
+    nodeStates = asList(json['nodeStates'], NodeState.fromJson);
+    edgeStates = asList(json['edgeStates'], EdgeState.fromJson);
+    plannedPath = json['plannedPath'] != null
+        ? PlannedPath.fromJson(json['plannedPath'])
+        : null;
+    intermediatePath = json['intermediatePath'] != null
+        ? IntermediatePath.fromJson(json['intermediatePath'])
+        : null;
+    mobileRobotPosition = json['mobileRobotPosition'] != null
+        ? MobileRobotPosition.fromJson(json['mobileRobotPosition'])
+        : null;
+    velocity =
+        json['velocity'] != null ? Velocity.fromJson(json['velocity']) : null;
+    loads = asList(json['loads'], Load.fromJson);
     driving = json['driving'];
-    if (json['actionStates'] != null) {
-      actionStates = <ActionStates>[];
-      json['actionStates'].forEach((v) {
-        actionStates!.add(new ActionStates.fromJson(v));
-      });
-    }
-    batteryState = json['batteryState'] != null
-        ? new BatteryState.fromJson(json['batteryState'])
-        : null;
-    operatingMode = json['operatingMode'];
-    if (json['errors'] != null) {
-      errors = <Errors>[];
-      json['errors'].forEach((v) {
-        errors!.add(new Errors.fromJson(v));
-      });
-    }
-    safetyState = json['safetyState'] != null
-        ? new SafetyState.fromJson(json['safetyState'])
-        : null;
-    if (json['maps'] != null) {
-      maps = <Maps>[];
-      json['maps'].forEach((v) {
-        maps!.add(new Maps.fromJson(v));
-      });
-    }
-    zoneSetId = json['zoneSetId'];
     paused = json['paused'];
     newBaseRequest = json['newBaseRequest'];
-    distanceSinceLastNode = json['distanceSinceLastNode'];
-    agvPosition = json['agvPosition'] != null
-        ? new AgvPosition.fromJson(json['agvPosition'])
+    zoneRequests = asList(json['zoneRequests'], ZoneRequest.fromJson);
+    edgeRequests = asList(json['edgeRequests'], EdgeRequest.fromJson);
+    distanceSinceLastNode = asDouble(json['distanceSinceLastNode']);
+    actionStates = asList(json['actionStates'], ActionState.fromJson);
+    instantActionStates =
+        asList(json['instantActionStates'], ActionState.fromJson);
+    zoneActionStates =
+        asList(json['zoneActionStates'], ActionState.fromJson);
+    powerSupply = json['powerSupply'] != null
+        ? PowerSupply.fromJson(json['powerSupply'])
         : null;
-    velocity = json['velocity'] != null
-        ? new Velocity.fromJson(json['velocity'])
-        : null;
-    if (json['loads'] != null) {
-      loads = <Loads>[];
-      json['loads'].forEach((v) {
-        loads!.add(new Loads.fromJson(v));
-      });
-    }
-    if (json['information'] != null) {
-      information = <Information>[];
-      json['information'].forEach((v) {
-        information!.add(new Information.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['headerId'] = this.headerId;
-    data['timestamp'] = this.timestamp;
-    data['version'] = this.version;
-    data['manufacturer'] = this.manufacturer;
-    data['serialNumber'] = this.serialNumber;
-    data['orderId'] = this.orderId;
-    data['orderUpdateId'] = this.orderUpdateId;
-    data['lastNodeId'] = this.lastNodeId;
-    data['lastNodeSequenceId'] = this.lastNodeSequenceId;
-    if (this.nodeStates != null) {
-      data['nodeStates'] = this.nodeStates!.map((v) => v.toJson()).toList();
-    }
-    if (this.edgeStates != null) {
-      data['edgeStates'] = this.edgeStates!.map((v) => v.toJson()).toList();
-    }
-    data['driving'] = this.driving;
-    if (this.actionStates != null) {
-      data['actionStates'] = this.actionStates!.map((v) => v.toJson()).toList();
-    }
-    if (this.batteryState != null) {
-      data['batteryState'] = this.batteryState!.toJson();
-    }
-    data['operatingMode'] = this.operatingMode;
-    if (this.errors != null) {
-      data['errors'] = this.errors!.map((v) => v.toJson()).toList();
-    }
-    if (this.safetyState != null) {
-      data['safetyState'] = this.safetyState!.toJson();
-    }
-    if (this.maps != null) {
-      data['maps'] = this.maps!.map((v) => v.toJson()).toList();
-    }
-    data['zoneSetId'] = this.zoneSetId;
-    data['paused'] = this.paused;
-    data['newBaseRequest'] = this.newBaseRequest;
-    data['distanceSinceLastNode'] = this.distanceSinceLastNode;
-    if (this.agvPosition != null) {
-      data['agvPosition'] = this.agvPosition!.toJson();
-    }
-    if (this.velocity != null) {
-      data['velocity'] = this.velocity!.toJson();
-    }
-    if (this.loads != null) {
-      data['loads'] = this.loads!.map((v) => v.toJson()).toList();
-    }
-    if (this.information != null) {
-      data['information'] = this.information!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class NodeStates {
-  String? nodeId;
-  int? sequenceId;
-  bool? released;
-  String? nodeDescription;
-  NodePosition? nodePosition;
-
-  NodeStates(
-      {this.nodeId,
-      this.sequenceId,
-      this.released,
-      this.nodeDescription,
-      this.nodePosition});
-
-  NodeStates.fromJson(Map<String, dynamic> json) {
-    nodeId = json['nodeId'];
-    sequenceId = json['sequenceId'];
-    released = json['released'];
-    nodeDescription = json['nodeDescription'];
-    nodePosition = json['nodePosition'] != null
-        ? new NodePosition.fromJson(json['nodePosition'])
+    operatingMode = json['operatingMode'];
+    errors = asList(json['errors'], StateError.fromJson);
+    information = asList(json['information'], Info.fromJson);
+    safetyState = json['safetyState'] != null
+        ? SafetyState.fromJson(json['safetyState'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nodeId'] = this.nodeId;
-    data['sequenceId'] = this.sequenceId;
-    data['released'] = this.released;
-    data['nodeDescription'] = this.nodeDescription;
-    if (this.nodePosition != null) {
-      data['nodePosition'] = this.nodePosition!.toJson();
+    final data = <String, dynamic>{
+      'headerId': headerId,
+      'timestamp': timestamp,
+      'version': version,
+      'manufacturer': manufacturer,
+      'serialNumber': serialNumber,
+      'orderId': orderId,
+      'orderUpdateId': orderUpdateId,
+      'lastNodeId': lastNodeId,
+      'lastNodeSequenceId': lastNodeSequenceId,
+      'driving': driving,
+      'operatingMode': operatingMode,
+    };
+    if (maps != null) data['maps'] = maps!.map((e) => e.toJson()).toList();
+    if (zoneSets != null) {
+      data['zoneSets'] = zoneSets!.map((e) => e.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class NodePosition {
-  int? x;
-  int? y;
-  String? mapId;
-  int? theta;
-
-  NodePosition({this.x, this.y, this.mapId, this.theta});
-
-  NodePosition.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    mapId = json['mapId'];
-    theta = json['theta'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['mapId'] = this.mapId;
-    data['theta'] = this.theta;
-    return data;
-  }
-}
-
-class EdgeStates {
-  String? edgeId;
-  int? sequenceId;
-  bool? released;
-  String? edgeDescription;
-  Trajectory? trajectory;
-
-  EdgeStates(
-      {this.edgeId,
-      this.sequenceId,
-      this.released,
-      this.edgeDescription,
-      this.trajectory});
-
-  EdgeStates.fromJson(Map<String, dynamic> json) {
-    edgeId = json['edgeId'];
-    sequenceId = json['sequenceId'];
-    released = json['released'];
-    edgeDescription = json['edgeDescription'];
-    trajectory = json['trajectory'] != null
-        ? new Trajectory.fromJson(json['trajectory'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['edgeId'] = this.edgeId;
-    data['sequenceId'] = this.sequenceId;
-    data['released'] = this.released;
-    data['edgeDescription'] = this.edgeDescription;
-    if (this.trajectory != null) {
-      data['trajectory'] = this.trajectory!.toJson();
+    data['nodeStates'] =
+        (nodeStates ?? const []).map((e) => e.toJson()).toList();
+    data['edgeStates'] =
+        (edgeStates ?? const []).map((e) => e.toJson()).toList();
+    if (plannedPath != null) data['plannedPath'] = plannedPath!.toJson();
+    if (intermediatePath != null) {
+      data['intermediatePath'] = intermediatePath!.toJson();
     }
-    return data;
-  }
-}
-
-class Trajectory {
-  int? degree;
-  List<double>? knotVector;
-  List<ControlPoints>? controlPoints;
-
-  Trajectory({this.degree, this.knotVector, this.controlPoints});
-
-  Trajectory.fromJson(Map<String, dynamic> json) {
-    degree = json['degree'];
-    knotVector = json['knotVector'].cast<double>();
-    if (json['controlPoints'] != null) {
-      controlPoints = <ControlPoints>[];
-      json['controlPoints'].forEach((v) {
-        controlPoints!.add(new ControlPoints.fromJson(v));
-      });
+    if (mobileRobotPosition != null) {
+      data['mobileRobotPosition'] = mobileRobotPosition!.toJson();
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['degree'] = this.degree;
-    data['knotVector'] = this.knotVector;
-    if (this.controlPoints != null) {
-      data['controlPoints'] =
-          this.controlPoints!.map((v) => v.toJson()).toList();
+    if (velocity != null) data['velocity'] = velocity!.toJson();
+    if (loads != null) data['loads'] = loads!.map((e) => e.toJson()).toList();
+    if (paused != null) data['paused'] = paused;
+    if (newBaseRequest != null) data['newBaseRequest'] = newBaseRequest;
+    if (zoneRequests != null) {
+      data['zoneRequests'] = zoneRequests!.map((e) => e.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class ControlPoints {
-  int? x;
-  int? y;
-  int? weight;
-
-  ControlPoints({this.x, this.y, this.weight});
-
-  ControlPoints.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    weight = json['weight'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['weight'] = this.weight;
-    return data;
-  }
-}
-
-class ActionStates {
-  String? actionId;
-  String? actionStatus;
-  String? actionType;
-  String? actionDescription;
-  String? resultDescription;
-
-  ActionStates(
-      {this.actionId,
-      this.actionStatus,
-      this.actionType,
-      this.actionDescription,
-      this.resultDescription});
-
-  ActionStates.fromJson(Map<String, dynamic> json) {
-    actionId = json['actionId'];
-    actionStatus = json['actionStatus'];
-    actionType = json['actionType'];
-    actionDescription = json['actionDescription'];
-    resultDescription = json['resultDescription'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['actionId'] = this.actionId;
-    data['actionStatus'] = this.actionStatus;
-    data['actionType'] = this.actionType;
-    data['actionDescription'] = this.actionDescription;
-    data['resultDescription'] = this.resultDescription;
-    return data;
-  }
-}
-
-class BatteryState {
-  int? batteryCharge;
-  bool? charging;
-  int? batteryVoltage;
-  int? batteryHealth;
-  int? reach;
-
-  BatteryState(
-      {this.batteryCharge,
-      this.charging,
-      this.batteryVoltage,
-      this.batteryHealth,
-      this.reach});
-
-  BatteryState.fromJson(Map<String, dynamic> json) {
-    batteryCharge = json['batteryCharge'];
-    charging = json['charging'];
-    batteryVoltage = json['batteryVoltage'];
-    batteryHealth = json['batteryHealth'];
-    reach = json['reach'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['batteryCharge'] = this.batteryCharge;
-    data['charging'] = this.charging;
-    data['batteryVoltage'] = this.batteryVoltage;
-    data['batteryHealth'] = this.batteryHealth;
-    data['reach'] = this.reach;
-    return data;
-  }
-}
-
-class Errors {
-  String? errorType;
-  String? errorLevel;
-  List<ErrorReferences>? errorReferences;
-  String? errorDescription;
-  String? errorHint;
-
-  Errors(
-      {this.errorType,
-      this.errorLevel,
-      this.errorReferences,
-      this.errorDescription,
-      this.errorHint});
-
-  Errors.fromJson(Map<String, dynamic> json) {
-    errorType = json['errorType'];
-    errorLevel = json['errorLevel'];
-    if (json['errorReferences'] != null) {
-      errorReferences = <ErrorReferences>[];
-      json['errorReferences'].forEach((v) {
-        errorReferences!.add(new ErrorReferences.fromJson(v));
-      });
+    if (edgeRequests != null) {
+      data['edgeRequests'] = edgeRequests!.map((e) => e.toJson()).toList();
     }
-    errorDescription = json['errorDescription'];
-    errorHint = json['errorHint'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['errorType'] = this.errorType;
-    data['errorLevel'] = this.errorLevel;
-    if (this.errorReferences != null) {
-      data['errorReferences'] =
-          this.errorReferences!.map((v) => v.toJson()).toList();
+    if (distanceSinceLastNode != null) {
+      data['distanceSinceLastNode'] = distanceSinceLastNode;
     }
-    data['errorDescription'] = this.errorDescription;
-    data['errorHint'] = this.errorHint;
+    data['actionStates'] =
+        (actionStates ?? const []).map((e) => e.toJson()).toList();
+    data['instantActionStates'] =
+        (instantActionStates ?? const []).map((e) => e.toJson()).toList();
+    if (zoneActionStates != null) {
+      data['zoneActionStates'] =
+          zoneActionStates!.map((e) => e.toJson()).toList();
+    }
+    if (powerSupply != null) data['powerSupply'] = powerSupply!.toJson();
+    data['errors'] = (errors ?? const []).map((e) => e.toJson()).toList();
+    if (information != null) {
+      data['information'] = information!.map((e) => e.toJson()).toList();
+    }
+    if (safetyState != null) data['safetyState'] = safetyState!.toJson();
     return data;
   }
 }
 
-class ErrorReferences {
-  String? referenceKey;
-  String? referenceValue;
-
-  ErrorReferences({this.referenceKey, this.referenceValue});
-
-  ErrorReferences.fromJson(Map<String, dynamic> json) {
-    referenceKey = json['referenceKey'];
-    referenceValue = json['referenceValue'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['referenceKey'] = this.referenceKey;
-    data['referenceValue'] = this.referenceValue;
-    return data;
-  }
-}
-
-class SafetyState {
-  String? eStop;
-  bool? fieldViolation;
-
-  SafetyState({this.eStop, this.fieldViolation});
-
-  SafetyState.fromJson(Map<String, dynamic> json) {
-    eStop = json['eStop'];
-    fieldViolation = json['fieldViolation'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['eStop'] = this.eStop;
-    data['fieldViolation'] = this.fieldViolation;
-    return data;
-  }
-}
-
-class Maps {
+class MapState {
   String? mapId;
   String? mapVersion;
+  String? mapDescriptor;
+
+  /// ENABLED or DISABLED.
   String? mapStatus;
-  String? mapDescription;
 
-  Maps({this.mapId, this.mapVersion, this.mapStatus, this.mapDescription});
+  MapState({this.mapId, this.mapVersion, this.mapDescriptor, this.mapStatus});
 
-  Maps.fromJson(Map<String, dynamic> json) {
+  MapState.fromJson(Map<String, dynamic> json) {
     mapId = json['mapId'];
     mapVersion = json['mapVersion'];
+    mapDescriptor = json['mapDescriptor'];
     mapStatus = json['mapStatus'];
-    mapDescription = json['mapDescription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['mapId'] = this.mapId;
-    data['mapVersion'] = this.mapVersion;
-    data['mapStatus'] = this.mapStatus;
-    data['mapDescription'] = this.mapDescription;
+    final data = <String, dynamic>{
+      'mapId': mapId,
+      'mapVersion': mapVersion,
+      'mapStatus': mapStatus,
+    };
+    if (mapDescriptor != null) data['mapDescriptor'] = mapDescriptor;
     return data;
   }
 }
 
-class AgvPosition {
-  int? x;
-  int? y;
-  int? theta;
+class ZoneSetState {
+  String? zoneSetId;
   String? mapId;
-  bool? positionInitialized;
-  String? mapDescription;
-  double? localizationScore;
-  int? deviationRange;
 
-  AgvPosition(
-      {this.x,
-      this.y,
-      this.theta,
-      this.mapId,
-      this.positionInitialized,
-      this.mapDescription,
-      this.localizationScore,
-      this.deviationRange});
+  /// ENABLED or DISABLED.
+  String? zoneSetStatus;
 
-  AgvPosition.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    theta = json['theta'];
+  ZoneSetState({this.zoneSetId, this.mapId, this.zoneSetStatus});
+
+  ZoneSetState.fromJson(Map<String, dynamic> json) {
+    zoneSetId = json['zoneSetId'];
     mapId = json['mapId'];
-    positionInitialized = json['positionInitialized'];
-    mapDescription = json['mapDescription'];
-    localizationScore = json['localizationScore'];
-    deviationRange = json['deviationRange'];
+    zoneSetStatus = json['zoneSetStatus'];
+  }
+
+  Map<String, dynamic> toJson() =>
+      {'zoneSetId': zoneSetId, 'mapId': mapId, 'zoneSetStatus': zoneSetStatus};
+}
+
+class NodeState {
+  String? nodeId;
+  int? sequenceId;
+  String? nodeDescriptor;
+  bool? released;
+  NodePosition? nodePosition;
+
+  NodeState({
+    this.nodeId,
+    this.sequenceId,
+    this.nodeDescriptor,
+    this.released,
+    this.nodePosition,
+  });
+
+  NodeState.fromJson(Map<String, dynamic> json) {
+    nodeId = json['nodeId'];
+    sequenceId = json['sequenceId'];
+    nodeDescriptor = json['nodeDescriptor'];
+    released = json['released'];
+    nodePosition = json['nodePosition'] != null
+        ? NodePosition.fromJson(json['nodePosition'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['theta'] = this.theta;
-    data['mapId'] = this.mapId;
-    data['positionInitialized'] = this.positionInitialized;
-    data['mapDescription'] = this.mapDescription;
-    data['localizationScore'] = this.localizationScore;
-    data['deviationRange'] = this.deviationRange;
+    final data = <String, dynamic>{
+      'nodeId': nodeId,
+      'sequenceId': sequenceId,
+      'released': released,
+    };
+    if (nodeDescriptor != null) data['nodeDescriptor'] = nodeDescriptor;
+    if (nodePosition != null) data['nodePosition'] = nodePosition!.toJson();
     return data;
   }
 }
 
-class Velocity {
-  int? vx;
-  int? vy;
-  int? omega;
+class EdgeState {
+  String? edgeId;
+  int? sequenceId;
+  String? edgeDescriptor;
+  bool? released;
+  Trajectory? trajectory;
 
-  Velocity({this.vx, this.vy, this.omega});
+  EdgeState({
+    this.edgeId,
+    this.sequenceId,
+    this.edgeDescriptor,
+    this.released,
+    this.trajectory,
+  });
 
-  Velocity.fromJson(Map<String, dynamic> json) {
-    vx = json['vx'];
-    vy = json['vy'];
-    omega = json['omega'];
+  EdgeState.fromJson(Map<String, dynamic> json) {
+    edgeId = json['edgeId'];
+    sequenceId = json['sequenceId'];
+    edgeDescriptor = json['edgeDescriptor'];
+    released = json['released'];
+    trajectory = json['trajectory'] != null
+        ? Trajectory.fromJson(json['trajectory'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['vx'] = this.vx;
-    data['vy'] = this.vy;
-    data['omega'] = this.omega;
+    final data = <String, dynamic>{
+      'edgeId': edgeId,
+      'sequenceId': sequenceId,
+      'released': released,
+    };
+    if (edgeDescriptor != null) data['edgeDescriptor'] = edgeDescriptor;
+    if (trajectory != null) data['trajectory'] = trajectory!.toJson();
     return data;
   }
 }
 
-class Loads {
+class Load {
   String? loadId;
   String? loadType;
   String? loadPosition;
   BoundingBoxReference? boundingBoxReference;
   LoadDimensions? loadDimensions;
-  int? weight;
+  double? weight;
 
-  Loads(
-      {this.loadId,
-      this.loadType,
-      this.loadPosition,
-      this.boundingBoxReference,
-      this.loadDimensions,
-      this.weight});
+  Load({
+    this.loadId,
+    this.loadType,
+    this.loadPosition,
+    this.boundingBoxReference,
+    this.loadDimensions,
+    this.weight,
+  });
 
-  Loads.fromJson(Map<String, dynamic> json) {
+  Load.fromJson(Map<String, dynamic> json) {
     loadId = json['loadId'];
     loadType = json['loadType'];
     loadPosition = json['loadPosition'];
     boundingBoxReference = json['boundingBoxReference'] != null
-        ? new BoundingBoxReference.fromJson(json['boundingBoxReference'])
+        ? BoundingBoxReference.fromJson(json['boundingBoxReference'])
         : null;
     loadDimensions = json['loadDimensions'] != null
-        ? new LoadDimensions.fromJson(json['loadDimensions'])
+        ? LoadDimensions.fromJson(json['loadDimensions'])
         : null;
-    weight = json['weight'];
+    weight = asDouble(json['weight']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['loadId'] = this.loadId;
-    data['loadType'] = this.loadType;
-    data['loadPosition'] = this.loadPosition;
-    if (this.boundingBoxReference != null) {
-      data['boundingBoxReference'] = this.boundingBoxReference!.toJson();
+    final data = <String, dynamic>{};
+    if (loadId != null) data['loadId'] = loadId;
+    if (loadType != null) data['loadType'] = loadType;
+    if (loadPosition != null) data['loadPosition'] = loadPosition;
+    if (boundingBoxReference != null) {
+      data['boundingBoxReference'] = boundingBoxReference!.toJson();
     }
-    if (this.loadDimensions != null) {
-      data['loadDimensions'] = this.loadDimensions!.toJson();
+    if (loadDimensions != null) {
+      data['loadDimensions'] = loadDimensions!.toJson();
     }
-    data['weight'] = this.weight;
+    if (weight != null) data['weight'] = weight;
     return data;
   }
 }
 
-class BoundingBoxReference {
-  int? x;
-  int? y;
-  int? z;
-  int? theta;
+class ZoneRequest {
+  String? requestId;
 
-  BoundingBoxReference({this.x, this.y, this.z, this.theta});
+  /// ACCESS or REPLANNING.
+  String? requestType;
+  String? zoneId;
+  String? zoneSetId;
 
-  BoundingBoxReference.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    z = json['z'];
-    theta = json['theta'];
+  /// REQUESTED, GRANTED, REVOKED or EXPIRED.
+  String? requestStatus;
+  Trajectory? trajectory;
+
+  ZoneRequest({
+    this.requestId,
+    this.requestType,
+    this.zoneId,
+    this.zoneSetId,
+    this.requestStatus,
+    this.trajectory,
+  });
+
+  ZoneRequest.fromJson(Map<String, dynamic> json) {
+    requestId = json['requestId'];
+    requestType = json['requestType'];
+    zoneId = json['zoneId'];
+    zoneSetId = json['zoneSetId'];
+    requestStatus = json['requestStatus'];
+    trajectory = json['trajectory'] != null
+        ? Trajectory.fromJson(json['trajectory'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['z'] = this.z;
-    data['theta'] = this.theta;
+    final data = <String, dynamic>{
+      'requestId': requestId,
+      'requestType': requestType,
+      'zoneId': zoneId,
+      'zoneSetId': zoneSetId,
+      'requestStatus': requestStatus,
+    };
+    if (trajectory != null) data['trajectory'] = trajectory!.toJson();
     return data;
   }
 }
 
-class LoadDimensions {
-  int? length;
-  int? width;
-  int? height;
+class EdgeRequest {
+  String? requestId;
 
-  LoadDimensions({this.length, this.width, this.height});
+  /// CORRIDOR.
+  String? requestType;
+  String? edgeId;
+  int? sequenceId;
 
-  LoadDimensions.fromJson(Map<String, dynamic> json) {
-    length = json['length'];
-    width = json['width'];
-    height = json['height'];
+  /// REQUESTED, GRANTED, REVOKED or EXPIRED.
+  String? requestStatus;
+
+  EdgeRequest({
+    this.requestId,
+    this.requestType,
+    this.edgeId,
+    this.sequenceId,
+    this.requestStatus,
+  });
+
+  EdgeRequest.fromJson(Map<String, dynamic> json) {
+    requestId = json['requestId'];
+    requestType = json['requestType'];
+    edgeId = json['edgeId'];
+    sequenceId = json['sequenceId'];
+    requestStatus = json['requestStatus'];
+  }
+
+  Map<String, dynamic> toJson() => {
+        'requestId': requestId,
+        'requestType': requestType,
+        'edgeId': edgeId,
+        'sequenceId': sequenceId,
+        'requestStatus': requestStatus,
+      };
+}
+
+class ActionState {
+  String? actionId;
+  String? actionType;
+  String? actionDescriptor;
+
+  /// WAITING, INITIALIZING, RUNNING, PAUSED, RETRIABLE, FINISHED or FAILED.
+  String? actionStatus;
+  String? actionResult;
+
+  ActionState({
+    this.actionId,
+    this.actionType,
+    this.actionDescriptor,
+    this.actionStatus,
+    this.actionResult,
+  });
+
+  ActionState.fromJson(Map<String, dynamic> json) {
+    actionId = json['actionId'];
+    actionType = json['actionType'];
+    actionDescriptor = json['actionDescriptor'];
+    actionStatus = json['actionStatus'];
+    actionResult = json['actionResult'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['length'] = this.length;
-    data['width'] = this.width;
-    data['height'] = this.height;
+    final data = <String, dynamic>{
+      'actionId': actionId,
+      'actionStatus': actionStatus,
+    };
+    if (actionType != null) data['actionType'] = actionType;
+    if (actionDescriptor != null) data['actionDescriptor'] = actionDescriptor;
+    if (actionResult != null) data['actionResult'] = actionResult;
     return data;
   }
 }
 
-class Information {
+class PowerSupply {
+  double? stateOfCharge;
+  double? batteryVoltage;
+  double? batteryCurrent;
+  double? batteryHealth;
+  bool? charging;
+  double? range;
+
+  PowerSupply({
+    this.stateOfCharge,
+    this.batteryVoltage,
+    this.batteryCurrent,
+    this.batteryHealth,
+    this.charging,
+    this.range,
+  });
+
+  PowerSupply.fromJson(Map<String, dynamic> json) {
+    stateOfCharge = asDouble(json['stateOfCharge']);
+    batteryVoltage = asDouble(json['batteryVoltage']);
+    batteryCurrent = asDouble(json['batteryCurrent']);
+    batteryHealth = asDouble(json['batteryHealth']);
+    charging = json['charging'];
+    range = asDouble(json['range']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{
+      'stateOfCharge': stateOfCharge,
+      'charging': charging,
+    };
+    if (batteryVoltage != null) data['batteryVoltage'] = batteryVoltage;
+    if (batteryCurrent != null) data['batteryCurrent'] = batteryCurrent;
+    if (batteryHealth != null) data['batteryHealth'] = batteryHealth;
+    if (range != null) data['range'] = range;
+    return data;
+  }
+}
+
+class StateError {
+  String? errorType;
+  List<Reference>? errorReferences;
+  String? errorDescription;
+  List<Translation>? errorDescriptionTranslations;
+  String? errorHint;
+  List<Translation>? errorHintTranslations;
+
+  /// WARNING, URGENT, CRITICAL or FATAL.
+  String? errorLevel;
+
+  StateError({
+    this.errorType,
+    this.errorReferences,
+    this.errorDescription,
+    this.errorDescriptionTranslations,
+    this.errorHint,
+    this.errorHintTranslations,
+    this.errorLevel,
+  });
+
+  StateError.fromJson(Map<String, dynamic> json) {
+    errorType = json['errorType'];
+    errorReferences = asList(json['errorReferences'], Reference.fromJson);
+    errorDescription = json['errorDescription'];
+    errorDescriptionTranslations =
+        asList(json['errorDescriptionTranslations'], Translation.fromJson);
+    errorHint = json['errorHint'];
+    errorHintTranslations =
+        asList(json['errorHintTranslations'], Translation.fromJson);
+    errorLevel = json['errorLevel'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{
+      'errorType': errorType,
+      'errorLevel': errorLevel,
+    };
+    if (errorReferences != null) {
+      data['errorReferences'] =
+          errorReferences!.map((e) => e.toJson()).toList();
+    }
+    if (errorDescription != null) data['errorDescription'] = errorDescription;
+    if (errorDescriptionTranslations != null) {
+      data['errorDescriptionTranslations'] =
+          errorDescriptionTranslations!.map((e) => e.toJson()).toList();
+    }
+    if (errorHint != null) data['errorHint'] = errorHint;
+    if (errorHintTranslations != null) {
+      data['errorHintTranslations'] =
+          errorHintTranslations!.map((e) => e.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Translation {
+  /// ISO 639-1 language key.
+  String? translationKey;
+  String? translationValue;
+
+  Translation({this.translationKey, this.translationValue});
+
+  Translation.fromJson(Map<String, dynamic> json)
+      : translationKey = json['translationKey'],
+        translationValue = json['translationValue'];
+
+  Map<String, dynamic> toJson() => {
+        'translationKey': translationKey,
+        'translationValue': translationValue,
+      };
+}
+
+class Info {
   String? infoType;
+  List<Reference>? infoReferences;
+  String? infoDescriptor;
+
+  /// INFO or DEBUG.
   String? infoLevel;
-  List<InfoReferences>? infoReferences;
-  String? infoDescription;
 
-  Information(
-      {this.infoType,
-      this.infoLevel,
-      this.infoReferences,
-      this.infoDescription});
+  Info({
+    this.infoType,
+    this.infoReferences,
+    this.infoDescriptor,
+    this.infoLevel,
+  });
 
-  Information.fromJson(Map<String, dynamic> json) {
+  Info.fromJson(Map<String, dynamic> json) {
     infoType = json['infoType'];
+    infoReferences = asList(json['infoReferences'], Reference.fromJson);
+    infoDescriptor = json['infoDescriptor'];
     infoLevel = json['infoLevel'];
-    if (json['infoReferences'] != null) {
-      infoReferences = <InfoReferences>[];
-      json['infoReferences'].forEach((v) {
-        infoReferences!.add(new InfoReferences.fromJson(v));
-      });
-    }
-    infoDescription = json['infoDescription'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['infoType'] = this.infoType;
-    data['infoLevel'] = this.infoLevel;
-    if (this.infoReferences != null) {
-      data['infoReferences'] =
-          this.infoReferences!.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{
+      'infoType': infoType,
+      'infoLevel': infoLevel,
+    };
+    if (infoReferences != null) {
+      data['infoReferences'] = infoReferences!.map((e) => e.toJson()).toList();
     }
-    data['infoDescription'] = this.infoDescription;
+    if (infoDescriptor != null) data['infoDescriptor'] = infoDescriptor;
     return data;
   }
+}
+
+class SafetyState {
+  /// MANUAL, REMOTE or NONE.
+  String? activeEmergencyStop;
+  bool? fieldViolation;
+
+  SafetyState({this.activeEmergencyStop, this.fieldViolation});
+
+  SafetyState.fromJson(Map<String, dynamic> json) {
+    activeEmergencyStop = json['activeEmergencyStop'];
+    fieldViolation = json['fieldViolation'];
+  }
+
+  Map<String, dynamic> toJson() => {
+        'activeEmergencyStop': activeEmergencyStop,
+        'fieldViolation': fieldViolation,
+      };
 }

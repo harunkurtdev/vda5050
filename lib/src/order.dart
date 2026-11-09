@@ -1,4 +1,9 @@
-// src/order.dart
+// VDA 5050 v3.0.0 `order` message (fleet control -> mobile robot).
+//
+// Schema: json_schemas/order.schema
+
+import 'common.dart';
+
 class Order {
   int? headerId;
   String? timestamp;
@@ -7,21 +12,22 @@ class Order {
   String? serialNumber;
   String? orderId;
   int? orderUpdateId;
-  List<Nodes>? nodes;
-  List<Edges>? edges;
-  String? zoneSetId;
+  String? orderDescription;
+  List<Node>? nodes;
+  List<Edge>? edges;
 
-  Order(
-      {this.headerId,
-      this.timestamp,
-      this.version,
-      this.manufacturer,
-      this.serialNumber,
-      this.orderId,
-      this.orderUpdateId,
-      this.nodes,
-      this.edges,
-      this.zoneSetId});
+  Order({
+    this.headerId,
+    this.timestamp,
+    this.version,
+    this.manufacturer,
+    this.serialNumber,
+    this.orderId,
+    this.orderUpdateId,
+    this.orderDescription,
+    this.nodes,
+    this.edges,
+  });
 
   Order.fromJson(Map<String, dynamic> json) {
     headerId = json['headerId'];
@@ -31,386 +37,207 @@ class Order {
     serialNumber = json['serialNumber'];
     orderId = json['orderId'];
     orderUpdateId = json['orderUpdateId'];
-    if (json['nodes'] != null) {
-      nodes = <Nodes>[];
-      json['nodes'].forEach((v) {
-        nodes!.add(new Nodes.fromJson(v));
-      });
-    }
-    if (json['edges'] != null) {
-      edges = <Edges>[];
-      json['edges'].forEach((v) {
-        edges!.add(new Edges.fromJson(v));
-      });
-    }
-    zoneSetId = json['zoneSetId'];
+    orderDescription = json['orderDescription'];
+    nodes = asList(json['nodes'], Node.fromJson);
+    edges = asList(json['edges'], Edge.fromJson);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['headerId'] = this.headerId;
-    data['timestamp'] = this.timestamp;
-    data['version'] = this.version;
-    data['manufacturer'] = this.manufacturer;
-    data['serialNumber'] = this.serialNumber;
-    data['orderId'] = this.orderId;
-    data['orderUpdateId'] = this.orderUpdateId;
-    if (this.nodes != null) {
-      data['nodes'] = this.nodes!.map((v) => v.toJson()).toList();
-    }
-    if (this.edges != null) {
-      data['edges'] = this.edges!.map((v) => v.toJson()).toList();
-    }
-    data['zoneSetId'] = this.zoneSetId;
+    final data = <String, dynamic>{
+      'headerId': headerId,
+      'timestamp': timestamp,
+      'version': version,
+      'manufacturer': manufacturer,
+      'serialNumber': serialNumber,
+      'orderId': orderId,
+      'orderUpdateId': orderUpdateId,
+    };
+    if (orderDescription != null) data['orderDescription'] = orderDescription;
+    if (nodes != null) data['nodes'] = nodes!.map((e) => e.toJson()).toList();
+    if (edges != null) data['edges'] = edges!.map((e) => e.toJson()).toList();
     return data;
   }
 }
 
-class Nodes {
+class Node {
   String? nodeId;
   int? sequenceId;
+  String? nodeDescriptor;
   bool? released;
-  List<Actions>? actions;
-  String? nodeDescription;
   NodePosition? nodePosition;
+  List<Action>? actions;
 
-  Nodes(
-      {this.nodeId,
-      this.sequenceId,
-      this.released,
-      this.actions,
-      this.nodeDescription,
-      this.nodePosition});
+  Node({
+    this.nodeId,
+    this.sequenceId,
+    this.nodeDescriptor,
+    this.released,
+    this.nodePosition,
+    this.actions,
+  });
 
-  Nodes.fromJson(Map<String, dynamic> json) {
+  Node.fromJson(Map<String, dynamic> json) {
     nodeId = json['nodeId'];
     sequenceId = json['sequenceId'];
+    nodeDescriptor = json['nodeDescriptor'];
     released = json['released'];
-    if (json['actions'] != null) {
-      actions = <Actions>[];
-      json['actions'].forEach((v) {
-        actions!.add(new Actions.fromJson(v));
-      });
-    }
-    nodeDescription = json['nodeDescription'];
     nodePosition = json['nodePosition'] != null
-        ? new NodePosition.fromJson(json['nodePosition'])
+        ? NodePosition.fromJson(json['nodePosition'])
         : null;
+    actions = asList(json['actions'], Action.fromJson);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nodeId'] = this.nodeId;
-    data['sequenceId'] = this.sequenceId;
-    data['released'] = this.released;
-    if (this.actions != null) {
-      data['actions'] = this.actions!.map((v) => v.toJson()).toList();
-    }
-    data['nodeDescription'] = this.nodeDescription;
-    if (this.nodePosition != null) {
-      data['nodePosition'] = this.nodePosition!.toJson();
-    }
+    final data = <String, dynamic>{
+      'nodeId': nodeId,
+      'sequenceId': sequenceId,
+      'released': released,
+    };
+    if (nodeDescriptor != null) data['nodeDescriptor'] = nodeDescriptor;
+    if (nodePosition != null) data['nodePosition'] = nodePosition!.toJson();
+    data['actions'] = (actions ?? const []).map((e) => e.toJson()).toList();
     return data;
   }
 }
 
-class Actions {
-  String? actionId;
-  String? actionType;
-  String? blockingType;
-  String? actionDescription;
-  List<ActionParameters>? actionParameters;
-
-  Actions(
-      {this.actionId,
-      this.actionType,
-      this.blockingType,
-      this.actionDescription,
-      this.actionParameters});
-
-  Actions.fromJson(Map<String, dynamic> json) {
-    actionId = json['actionId'];
-    actionType = json['actionType'];
-    blockingType = json['blockingType'];
-    actionDescription = json['actionDescription'];
-    if (json['actionParameters'] != null) {
-      actionParameters = <ActionParameters>[];
-      json['actionParameters'].forEach((v) {
-        actionParameters!.add(new ActionParameters.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['actionId'] = this.actionId;
-    data['actionType'] = this.actionType;
-    data['blockingType'] = this.blockingType;
-    data['actionDescription'] = this.actionDescription;
-    if (this.actionParameters != null) {
-      data['actionParameters'] =
-          this.actionParameters!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class ActionParameters {
-  String? key;
-  List<Null>? value;
-
-  ActionParameters({this.key, this.value});
-
-  ActionParameters.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    if (json['value'] != null) {
-      value = <Null>[];
-      json['value'].forEach((v) {
-        value!.add(new Null.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    if (this.value != null) {
-      data['value'] = this.value!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class NodePosition {
-  int? x;
-  int? y;
-  String? mapId;
-  double? theta;
-  int? allowedDeviationXY;
-  double? allowedDeviationTheta;
-  String? mapDescription;
-
-  NodePosition(
-      {this.x,
-      this.y,
-      this.mapId,
-      this.theta,
-      this.allowedDeviationXY,
-      this.allowedDeviationTheta,
-      this.mapDescription});
-
-  NodePosition.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    mapId = json['mapId'];
-    theta = json['theta'];
-    allowedDeviationXY = json['allowedDeviationXY'];
-    allowedDeviationTheta = json['allowedDeviationTheta'];
-    mapDescription = json['mapDescription'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['mapId'] = this.mapId;
-    data['theta'] = this.theta;
-    data['allowedDeviationXY'] = this.allowedDeviationXY;
-    data['allowedDeviationTheta'] = this.allowedDeviationTheta;
-    data['mapDescription'] = this.mapDescription;
-    return data;
-  }
-}
-
-class Edges {
+class Edge {
   String? edgeId;
   int? sequenceId;
+  String? edgeDescriptor;
   bool? released;
   String? startNodeId;
   String? endNodeId;
-  List<Actions>? actions;
-  String? edgeDescription;
-  int? maxSpeed;
-  int? maxHeight;
-  int? minHeight;
+  double? maximumSpeed;
+  double? maximumMobileRobotHeight;
+  double? minimumLoadHandlingDeviceHeight;
   double? orientation;
+
+  /// GLOBAL (omni only) or TANGENTIAL (default).
   String? orientationType;
   String? direction;
-  bool? rotationAllowed;
-  int? maxRotationSpeed;
-  int? length;
+  bool? reachOrientationBeforeEntering;
+  double? maxRotationSpeed;
   Trajectory? trajectory;
+  double? length;
   Corridor? corridor;
+  List<Action>? actions;
 
-  Edges(
-      {this.edgeId,
-      this.sequenceId,
-      this.released,
-      this.startNodeId,
-      this.endNodeId,
-      this.actions,
-      this.edgeDescription,
-      this.maxSpeed,
-      this.maxHeight,
-      this.minHeight,
-      this.orientation,
-      this.orientationType,
-      this.direction,
-      this.rotationAllowed,
-      this.maxRotationSpeed,
-      this.length,
-      this.trajectory,
-      this.corridor});
+  Edge({
+    this.edgeId,
+    this.sequenceId,
+    this.edgeDescriptor,
+    this.released,
+    this.startNodeId,
+    this.endNodeId,
+    this.maximumSpeed,
+    this.maximumMobileRobotHeight,
+    this.minimumLoadHandlingDeviceHeight,
+    this.orientation,
+    this.orientationType,
+    this.direction,
+    this.reachOrientationBeforeEntering,
+    this.maxRotationSpeed,
+    this.trajectory,
+    this.length,
+    this.corridor,
+    this.actions,
+  });
 
-  Edges.fromJson(Map<String, dynamic> json) {
+  Edge.fromJson(Map<String, dynamic> json) {
     edgeId = json['edgeId'];
     sequenceId = json['sequenceId'];
+    edgeDescriptor = json['edgeDescriptor'];
     released = json['released'];
     startNodeId = json['startNodeId'];
     endNodeId = json['endNodeId'];
-    if (json['actions'] != null) {
-      actions = <Actions>[];
-      json['actions'].forEach((v) {
-        actions!.add(new Actions.fromJson(v));
-      });
-    }
-    edgeDescription = json['edgeDescription'];
-    maxSpeed = json['maxSpeed'];
-    maxHeight = json['maxHeight'];
-    minHeight = json['minHeight'];
-    orientation = json['orientation'];
+    maximumSpeed = asDouble(json['maximumSpeed']);
+    maximumMobileRobotHeight = asDouble(json['maximumMobileRobotHeight']);
+    minimumLoadHandlingDeviceHeight =
+        asDouble(json['minimumLoadHandlingDeviceHeight']);
+    orientation = asDouble(json['orientation']);
     orientationType = json['orientationType'];
     direction = json['direction'];
-    rotationAllowed = json['rotationAllowed'];
-    maxRotationSpeed = json['maxRotationSpeed'];
-    length = json['length'];
+    reachOrientationBeforeEntering = json['reachOrientationBeforeEntering'];
+    maxRotationSpeed = asDouble(json['maxRotationSpeed']);
     trajectory = json['trajectory'] != null
-        ? new Trajectory.fromJson(json['trajectory'])
+        ? Trajectory.fromJson(json['trajectory'])
         : null;
-    corridor = json['corridor'] != null
-        ? new Corridor.fromJson(json['corridor'])
-        : null;
+    length = asDouble(json['length']);
+    corridor =
+        json['corridor'] != null ? Corridor.fromJson(json['corridor']) : null;
+    actions = asList(json['actions'], Action.fromJson);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['edgeId'] = this.edgeId;
-    data['sequenceId'] = this.sequenceId;
-    data['released'] = this.released;
-    data['startNodeId'] = this.startNodeId;
-    data['endNodeId'] = this.endNodeId;
-    if (this.actions != null) {
-      data['actions'] = this.actions!.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{
+      'edgeId': edgeId,
+      'sequenceId': sequenceId,
+      'released': released,
+    };
+    if (edgeDescriptor != null) data['edgeDescriptor'] = edgeDescriptor;
+    if (startNodeId != null) data['startNodeId'] = startNodeId;
+    if (endNodeId != null) data['endNodeId'] = endNodeId;
+    if (maximumSpeed != null) data['maximumSpeed'] = maximumSpeed;
+    if (maximumMobileRobotHeight != null) {
+      data['maximumMobileRobotHeight'] = maximumMobileRobotHeight;
     }
-    data['edgeDescription'] = this.edgeDescription;
-    data['maxSpeed'] = this.maxSpeed;
-    data['maxHeight'] = this.maxHeight;
-    data['minHeight'] = this.minHeight;
-    data['orientation'] = this.orientation;
-    data['orientationType'] = this.orientationType;
-    data['direction'] = this.direction;
-    data['rotationAllowed'] = this.rotationAllowed;
-    data['maxRotationSpeed'] = this.maxRotationSpeed;
-    data['length'] = this.length;
-    if (this.trajectory != null) {
-      data['trajectory'] = this.trajectory!.toJson();
+    if (minimumLoadHandlingDeviceHeight != null) {
+      data['minimumLoadHandlingDeviceHeight'] = minimumLoadHandlingDeviceHeight;
     }
-    if (this.corridor != null) {
-      data['corridor'] = this.corridor!.toJson();
+    if (orientation != null) data['orientation'] = orientation;
+    if (orientationType != null) data['orientationType'] = orientationType;
+    if (direction != null) data['direction'] = direction;
+    if (reachOrientationBeforeEntering != null) {
+      data['reachOrientationBeforeEntering'] = reachOrientationBeforeEntering;
     }
-    return data;
-  }
-}
-
-class ActionParameters {
-  String? key;
-  String? value;
-
-  ActionParameters({this.key, this.value});
-
-  ActionParameters.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    value = json['value'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['value'] = this.value;
-    return data;
-  }
-}
-
-class Trajectory {
-  int? degree;
-  List<int>? knotVector;
-  List<ControlPoints>? controlPoints;
-
-  Trajectory({this.degree, this.knotVector, this.controlPoints});
-
-  Trajectory.fromJson(Map<String, dynamic> json) {
-    degree = json['degree'];
-    knotVector = json['knotVector'].cast<int>();
-    if (json['controlPoints'] != null) {
-      controlPoints = <ControlPoints>[];
-      json['controlPoints'].forEach((v) {
-        controlPoints!.add(new ControlPoints.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['degree'] = this.degree;
-    data['knotVector'] = this.knotVector;
-    if (this.controlPoints != null) {
-      data['controlPoints'] =
-          this.controlPoints!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class ControlPoints {
-  int? x;
-  int? y;
-  int? weight;
-
-  ControlPoints({this.x, this.y, this.weight});
-
-  ControlPoints.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    weight = json['weight'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['weight'] = this.weight;
+    if (maxRotationSpeed != null) data['maxRotationSpeed'] = maxRotationSpeed;
+    if (trajectory != null) data['trajectory'] = trajectory!.toJson();
+    if (length != null) data['length'] = length;
+    if (corridor != null) data['corridor'] = corridor!.toJson();
+    data['actions'] = (actions ?? const []).map((e) => e.toJson()).toList();
     return data;
   }
 }
 
 class Corridor {
-  int? leftWidth;
-  int? rightWidth;
-  String? corridorRefPoint;
+  double? leftWidth;
+  double? rightWidth;
 
-  Corridor({this.leftWidth, this.rightWidth, this.corridorRefPoint});
+  /// KINEMATIC_CENTER (default) or CONTOUR.
+  String? corridorReferencePoint;
+  bool? releaseRequired;
+
+  /// STOP or RETURN.
+  String? releaseLossBehavior;
+
+  Corridor({
+    this.leftWidth,
+    this.rightWidth,
+    this.corridorReferencePoint,
+    this.releaseRequired,
+    this.releaseLossBehavior,
+  });
 
   Corridor.fromJson(Map<String, dynamic> json) {
-    leftWidth = json['leftWidth'];
-    rightWidth = json['rightWidth'];
-    corridorRefPoint = json['corridorRefPoint'];
+    leftWidth = asDouble(json['leftWidth']);
+    rightWidth = asDouble(json['rightWidth']);
+    corridorReferencePoint = json['corridorReferencePoint'];
+    releaseRequired = json['releaseRequired'];
+    releaseLossBehavior = json['releaseLossBehavior'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['leftWidth'] = this.leftWidth;
-    data['rightWidth'] = this.rightWidth;
-    data['corridorRefPoint'] = this.corridorRefPoint;
+    final data = <String, dynamic>{
+      'leftWidth': leftWidth,
+      'rightWidth': rightWidth,
+    };
+    if (corridorReferencePoint != null) {
+      data['corridorReferencePoint'] = corridorReferencePoint;
+    }
+    if (releaseRequired != null) data['releaseRequired'] = releaseRequired;
+    if (releaseLossBehavior != null) {
+      data['releaseLossBehavior'] = releaseLossBehavior;
+    }
     return data;
   }
 }

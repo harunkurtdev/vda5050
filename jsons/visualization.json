@@ -1,0 +1,17 @@
+{
+  "headerId": 100,
+  "timestamp": "2025-03-01T12:36:05.000Z",
+  "version": "3.0.0",
+  "manufacturer": "ExampleRobotics",
+  "serialNumber": "AGV-0001",
+  "referenceStateHeaderId": 42,
+  "mobileRobotPosition": {
+    "x": 0.6,
+    "y": 0.1,
+    "theta": 0.0,
+    "mapId": "shopfloor",
+    "localized": true,
+    "localizationScore": 0.97
+  },
+  "velocity": { "vx": 0.4, "vy": 0.0, "omega": 0.0 }
+}

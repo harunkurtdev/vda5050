@@ -1,4 +1,12 @@
-class FactSheet {
+// VDA 5050 v3.0.0 `factsheet` message (mobile robot -> fleet control).
+//
+// Schema: json_schemas/factsheet.schema
+
+import 'common.dart';
+
+class Factsheet {
+  int? headerId;
+  String? timestamp;
   String? version;
   String? manufacturer;
   String? serialNumber;
@@ -6,82 +14,80 @@ class FactSheet {
   PhysicalParameters? physicalParameters;
   ProtocolLimits? protocolLimits;
   ProtocolFeatures? protocolFeatures;
-  AgvGeometry? agvGeometry;
+  MobileRobotGeometry? mobileRobotGeometry;
   LoadSpecification? loadSpecification;
-  int? headerId;
-  String? timestamp;
-  VehicleConfig? vehicleConfig;
+  MobileRobotConfiguration? mobileRobotConfiguration;
 
-  FactSheet(
-      {this.version,
-      this.manufacturer,
-      this.serialNumber,
-      this.typeSpecification,
-      this.physicalParameters,
-      this.protocolLimits,
-      this.protocolFeatures,
-      this.agvGeometry,
-      this.loadSpecification,
-      this.headerId,
-      this.timestamp,
-      this.vehicleConfig});
+  Factsheet({
+    this.headerId,
+    this.timestamp,
+    this.version,
+    this.manufacturer,
+    this.serialNumber,
+    this.typeSpecification,
+    this.physicalParameters,
+    this.protocolLimits,
+    this.protocolFeatures,
+    this.mobileRobotGeometry,
+    this.loadSpecification,
+    this.mobileRobotConfiguration,
+  });
 
-  FactSheet.fromJson(Map<String, dynamic> json) {
+  Factsheet.fromJson(Map<String, dynamic> json) {
+    headerId = json['headerId'];
+    timestamp = json['timestamp'];
     version = json['version'];
     manufacturer = json['manufacturer'];
     serialNumber = json['serialNumber'];
     typeSpecification = json['typeSpecification'] != null
-        ? new TypeSpecification.fromJson(json['typeSpecification'])
+        ? TypeSpecification.fromJson(json['typeSpecification'])
         : null;
     physicalParameters = json['physicalParameters'] != null
-        ? new PhysicalParameters.fromJson(json['physicalParameters'])
+        ? PhysicalParameters.fromJson(json['physicalParameters'])
         : null;
     protocolLimits = json['protocolLimits'] != null
-        ? new ProtocolLimits.fromJson(json['protocolLimits'])
+        ? ProtocolLimits.fromJson(json['protocolLimits'])
         : null;
     protocolFeatures = json['protocolFeatures'] != null
-        ? new ProtocolFeatures.fromJson(json['protocolFeatures'])
+        ? ProtocolFeatures.fromJson(json['protocolFeatures'])
         : null;
-    agvGeometry = json['agvGeometry'] != null
-        ? new AgvGeometry.fromJson(json['agvGeometry'])
+    mobileRobotGeometry = json['mobileRobotGeometry'] != null
+        ? MobileRobotGeometry.fromJson(json['mobileRobotGeometry'])
         : null;
     loadSpecification = json['loadSpecification'] != null
-        ? new LoadSpecification.fromJson(json['loadSpecification'])
+        ? LoadSpecification.fromJson(json['loadSpecification'])
         : null;
-    headerId = json['headerId'];
-    timestamp = json['timestamp'];
-    vehicleConfig = json['vehicleConfig'] != null
-        ? new VehicleConfig.fromJson(json['vehicleConfig'])
+    mobileRobotConfiguration = json['mobileRobotConfiguration'] != null
+        ? MobileRobotConfiguration.fromJson(json['mobileRobotConfiguration'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['version'] = this.version;
-    data['manufacturer'] = this.manufacturer;
-    data['serialNumber'] = this.serialNumber;
-    if (this.typeSpecification != null) {
-      data['typeSpecification'] = this.typeSpecification!.toJson();
+    final data = <String, dynamic>{
+      'headerId': headerId,
+      'timestamp': timestamp,
+      'version': version,
+      'manufacturer': manufacturer,
+      'serialNumber': serialNumber,
+    };
+    if (typeSpecification != null) {
+      data['typeSpecification'] = typeSpecification!.toJson();
     }
-    if (this.physicalParameters != null) {
-      data['physicalParameters'] = this.physicalParameters!.toJson();
+    if (physicalParameters != null) {
+      data['physicalParameters'] = physicalParameters!.toJson();
     }
-    if (this.protocolLimits != null) {
-      data['protocolLimits'] = this.protocolLimits!.toJson();
+    if (protocolLimits != null) data['protocolLimits'] = protocolLimits!.toJson();
+    if (protocolFeatures != null) {
+      data['protocolFeatures'] = protocolFeatures!.toJson();
     }
-    if (this.protocolFeatures != null) {
-      data['protocolFeatures'] = this.protocolFeatures!.toJson();
+    if (mobileRobotGeometry != null) {
+      data['mobileRobotGeometry'] = mobileRobotGeometry!.toJson();
     }
-    if (this.agvGeometry != null) {
-      data['agvGeometry'] = this.agvGeometry!.toJson();
+    if (loadSpecification != null) {
+      data['loadSpecification'] = loadSpecification!.toJson();
     }
-    if (this.loadSpecification != null) {
-      data['loadSpecification'] = this.loadSpecification!.toJson();
-    }
-    data['headerId'] = this.headerId;
-    data['timestamp'] = this.timestamp;
-    if (this.vehicleConfig != null) {
-      data['vehicleConfig'] = this.vehicleConfig!.toJson();
+    if (mobileRobotConfiguration != null) {
+      data['mobileRobotConfiguration'] = mobileRobotConfiguration!.toJson();
     }
     return data;
   }
@@ -89,385 +95,352 @@ class FactSheet {
 
 class TypeSpecification {
   String? seriesName;
-  String? agvKinematic;
-  String? agvClass;
-  int? maxLoadMass;
+  String? seriesDescription;
+  String? mobileRobotKinematics;
+  String? mobileRobotClass;
+  double? maximumLoadMass;
   List<String>? localizationTypes;
   List<String>? navigationTypes;
-  String? seriesDescription;
+  List<String>? supportedZones;
 
-  TypeSpecification(
-      {this.seriesName,
-      this.agvKinematic,
-      this.agvClass,
-      this.maxLoadMass,
-      this.localizationTypes,
-      this.navigationTypes,
-      this.seriesDescription});
+  TypeSpecification({
+    this.seriesName,
+    this.seriesDescription,
+    this.mobileRobotKinematics,
+    this.mobileRobotClass,
+    this.maximumLoadMass,
+    this.localizationTypes,
+    this.navigationTypes,
+    this.supportedZones,
+  });
 
   TypeSpecification.fromJson(Map<String, dynamic> json) {
     seriesName = json['seriesName'];
-    agvKinematic = json['agvKinematic'];
-    agvClass = json['agvClass'];
-    maxLoadMass = json['maxLoadMass'];
-    localizationTypes = json['localizationTypes'].cast<String>();
-    navigationTypes = json['navigationTypes'].cast<String>();
     seriesDescription = json['seriesDescription'];
+    mobileRobotKinematics = json['mobileRobotKinematics'];
+    mobileRobotClass = json['mobileRobotClass'];
+    maximumLoadMass = asDouble(json['maximumLoadMass']);
+    localizationTypes = asStringList(json['localizationTypes']);
+    navigationTypes = asStringList(json['navigationTypes']);
+    supportedZones = asStringList(json['supportedZones']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['seriesName'] = this.seriesName;
-    data['agvKinematic'] = this.agvKinematic;
-    data['agvClass'] = this.agvClass;
-    data['maxLoadMass'] = this.maxLoadMass;
-    data['localizationTypes'] = this.localizationTypes;
-    data['navigationTypes'] = this.navigationTypes;
-    data['seriesDescription'] = this.seriesDescription;
+    final data = <String, dynamic>{
+      'seriesName': seriesName,
+      'mobileRobotKinematics': mobileRobotKinematics,
+      'mobileRobotClass': mobileRobotClass,
+      'maximumLoadMass': maximumLoadMass,
+      'localizationTypes': localizationTypes,
+      'navigationTypes': navigationTypes,
+    };
+    if (seriesDescription != null) data['seriesDescription'] = seriesDescription;
+    if (supportedZones != null) data['supportedZones'] = supportedZones;
     return data;
   }
 }
 
 class PhysicalParameters {
-  int? speedMin;
-  int? speedMax;
-  int? accelerationMax;
-  int? decelerationMax;
-  int? heightMax;
-  int? width;
-  int? length;
-  int? heightMin;
+  double? minimumSpeed;
+  double? maximumSpeed;
+  double? minimumAngularSpeed;
+  double? maximumAngularSpeed;
+  double? maximumAcceleration;
+  double? maximumDeceleration;
+  double? minimumHeight;
+  double? maximumHeight;
+  double? width;
+  double? length;
 
-  PhysicalParameters(
-      {this.speedMin,
-      this.speedMax,
-      this.accelerationMax,
-      this.decelerationMax,
-      this.heightMax,
-      this.width,
-      this.length,
-      this.heightMin});
+  PhysicalParameters({
+    this.minimumSpeed,
+    this.maximumSpeed,
+    this.minimumAngularSpeed,
+    this.maximumAngularSpeed,
+    this.maximumAcceleration,
+    this.maximumDeceleration,
+    this.minimumHeight,
+    this.maximumHeight,
+    this.width,
+    this.length,
+  });
 
   PhysicalParameters.fromJson(Map<String, dynamic> json) {
-    speedMin = json['speedMin'];
-    speedMax = json['speedMax'];
-    accelerationMax = json['accelerationMax'];
-    decelerationMax = json['decelerationMax'];
-    heightMax = json['heightMax'];
-    width = json['width'];
-    length = json['length'];
-    heightMin = json['heightMin'];
+    minimumSpeed = asDouble(json['minimumSpeed']);
+    maximumSpeed = asDouble(json['maximumSpeed']);
+    minimumAngularSpeed = asDouble(json['minimumAngularSpeed']);
+    maximumAngularSpeed = asDouble(json['maximumAngularSpeed']);
+    maximumAcceleration = asDouble(json['maximumAcceleration']);
+    maximumDeceleration = asDouble(json['maximumDeceleration']);
+    minimumHeight = asDouble(json['minimumHeight']);
+    maximumHeight = asDouble(json['maximumHeight']);
+    width = asDouble(json['width']);
+    length = asDouble(json['length']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['speedMin'] = this.speedMin;
-    data['speedMax'] = this.speedMax;
-    data['accelerationMax'] = this.accelerationMax;
-    data['decelerationMax'] = this.decelerationMax;
-    data['heightMax'] = this.heightMax;
-    data['width'] = this.width;
-    data['length'] = this.length;
-    data['heightMin'] = this.heightMin;
+    final data = <String, dynamic>{
+      'minimumSpeed': minimumSpeed,
+      'maximumSpeed': maximumSpeed,
+      'maximumAcceleration': maximumAcceleration,
+      'maximumDeceleration': maximumDeceleration,
+      'minimumHeight': minimumHeight,
+      'maximumHeight': maximumHeight,
+      'width': width,
+      'length': length,
+    };
+    if (minimumAngularSpeed != null) {
+      data['minimumAngularSpeed'] = minimumAngularSpeed;
+    }
+    if (maximumAngularSpeed != null) {
+      data['maximumAngularSpeed'] = maximumAngularSpeed;
+    }
     return data;
   }
 }
 
 class ProtocolLimits {
-  MaxStringLens? maxStringLens;
-  MaxArrayLens? maxArrayLens;
+  MaximumStringLengths? maximumStringLengths;
+  MaximumArrayLengths? maximumArrayLengths;
   Timing? timing;
 
-  ProtocolLimits({this.maxStringLens, this.maxArrayLens, this.timing});
+  ProtocolLimits({
+    this.maximumStringLengths,
+    this.maximumArrayLengths,
+    this.timing,
+  });
 
   ProtocolLimits.fromJson(Map<String, dynamic> json) {
-    maxStringLens = json['maxStringLens'] != null
-        ? new MaxStringLens.fromJson(json['maxStringLens'])
+    maximumStringLengths = json['maximumStringLengths'] != null
+        ? MaximumStringLengths.fromJson(json['maximumStringLengths'])
         : null;
-    maxArrayLens = json['maxArrayLens'] != null
-        ? new MaxArrayLens.fromJson(json['maxArrayLens'])
+    maximumArrayLengths = json['maximumArrayLengths'] != null
+        ? MaximumArrayLengths.fromJson(json['maximumArrayLengths'])
         : null;
-    timing =
-        json['timing'] != null ? new Timing.fromJson(json['timing']) : null;
+    timing = json['timing'] != null ? Timing.fromJson(json['timing']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.maxStringLens != null) {
-      data['maxStringLens'] = this.maxStringLens!.toJson();
+    final data = <String, dynamic>{};
+    if (maximumStringLengths != null) {
+      data['maximumStringLengths'] = maximumStringLengths!.toJson();
     }
-    if (this.maxArrayLens != null) {
-      data['maxArrayLens'] = this.maxArrayLens!.toJson();
+    if (maximumArrayLengths != null) {
+      data['maximumArrayLengths'] = maximumArrayLengths!.toJson();
     }
-    if (this.timing != null) {
-      data['timing'] = this.timing!.toJson();
-    }
+    if (timing != null) data['timing'] = timing!.toJson();
     return data;
   }
 }
 
-class MaxStringLens {
-  int? msgLen;
-  int? topicSerialLen;
-  int? topicElemLen;
-  int? idLen;
+class MaximumStringLengths {
+  int? maximumMessageLength;
+  int? maximumTopicSerialLength;
+  int? maximumTopicElementLength;
+  int? maximumIdLength;
   bool? idNumericalOnly;
-  int? enumLen;
-  int? loadIdLen;
+  int? maximumLoadIdLength;
 
-  MaxStringLens(
-      {this.msgLen,
-      this.topicSerialLen,
-      this.topicElemLen,
-      this.idLen,
-      this.idNumericalOnly,
-      this.enumLen,
-      this.loadIdLen});
+  MaximumStringLengths({
+    this.maximumMessageLength,
+    this.maximumTopicSerialLength,
+    this.maximumTopicElementLength,
+    this.maximumIdLength,
+    this.idNumericalOnly,
+    this.maximumLoadIdLength,
+  });
 
-  MaxStringLens.fromJson(Map<String, dynamic> json) {
-    msgLen = json['msgLen'];
-    topicSerialLen = json['topicSerialLen'];
-    topicElemLen = json['topicElemLen'];
-    idLen = json['idLen'];
+  MaximumStringLengths.fromJson(Map<String, dynamic> json) {
+    maximumMessageLength = json['maximumMessageLength'];
+    maximumTopicSerialLength = json['maximumTopicSerialLength'];
+    maximumTopicElementLength = json['maximumTopicElementLength'];
+    maximumIdLength = json['maximumIdLength'];
     idNumericalOnly = json['idNumericalOnly'];
-    enumLen = json['enumLen'];
-    loadIdLen = json['loadIdLen'];
+    maximumLoadIdLength = json['maximumLoadIdLength'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['msgLen'] = this.msgLen;
-    data['topicSerialLen'] = this.topicSerialLen;
-    data['topicElemLen'] = this.topicElemLen;
-    data['idLen'] = this.idLen;
-    data['idNumericalOnly'] = this.idNumericalOnly;
-    data['enumLen'] = this.enumLen;
-    data['loadIdLen'] = this.loadIdLen;
+    final data = <String, dynamic>{};
+    if (maximumMessageLength != null) {
+      data['maximumMessageLength'] = maximumMessageLength;
+    }
+    if (maximumTopicSerialLength != null) {
+      data['maximumTopicSerialLength'] = maximumTopicSerialLength;
+    }
+    if (maximumTopicElementLength != null) {
+      data['maximumTopicElementLength'] = maximumTopicElementLength;
+    }
+    if (maximumIdLength != null) data['maximumIdLength'] = maximumIdLength;
+    if (idNumericalOnly != null) data['idNumericalOnly'] = idNumericalOnly;
+    if (maximumLoadIdLength != null) {
+      data['maximumLoadIdLength'] = maximumLoadIdLength;
+    }
     return data;
   }
 }
 
-class MaxArrayLens {
-  int? orderNodes;
-  int? orderEdges;
-  int? nodeActions;
-  int? edgeActions;
-  int? actionsActionsParameters;
-  int? instantActions;
-  int? trajectoryKnotVector;
-  int? trajectoryControlPoints;
-  int? stateNodeStates;
-  int? stateEdgeStates;
-  int? stateLoads;
-  int? stateActionStates;
-  int? stateErrors;
-  int? stateInformation;
-  int? errorErrorReferences;
-  int? informationInfoReferences;
+/// Maximum array lengths. Keys are the dotted JSON paths used by the schema
+/// (e.g. `order.nodes`), preserved verbatim in [extra].
+class MaximumArrayLengths {
+  final Map<String, dynamic> extra;
 
-  MaxArrayLens(
-      {this.orderNodes,
-      this.orderEdges,
-      this.nodeActions,
-      this.edgeActions,
-      this.actionsActionsParameters,
-      this.instantActions,
-      this.trajectoryKnotVector,
-      this.trajectoryControlPoints,
-      this.stateNodeStates,
-      this.stateEdgeStates,
-      this.stateLoads,
-      this.stateActionStates,
-      this.stateErrors,
-      this.stateInformation,
-      this.errorErrorReferences,
-      this.informationInfoReferences});
+  MaximumArrayLengths({Map<String, dynamic>? extra}) : extra = extra ?? {};
 
-  MaxArrayLens.fromJson(Map<String, dynamic> json) {
-    orderNodes = json['order.nodes'];
-    orderEdges = json['order.edges'];
-    nodeActions = json['node.actions'];
-    edgeActions = json['edge.actions'];
-    actionsActionsParameters = json['actions.actionsParameters'];
-    instantActions = json['instantActions'];
-    trajectoryKnotVector = json['trajectory.knotVector'];
-    trajectoryControlPoints = json['trajectory.controlPoints'];
-    stateNodeStates = json['state.nodeStates'];
-    stateEdgeStates = json['state.edgeStates'];
-    stateLoads = json['state.loads'];
-    stateActionStates = json['state.actionStates'];
-    stateErrors = json['state.errors'];
-    stateInformation = json['state.information'];
-    errorErrorReferences = json['error.errorReferences'];
-    informationInfoReferences = json['information.infoReferences'];
-  }
+  MaximumArrayLengths.fromJson(Map<String, dynamic> json)
+      : extra = Map<String, dynamic>.from(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order.nodes'] = this.orderNodes;
-    data['order.edges'] = this.orderEdges;
-    data['node.actions'] = this.nodeActions;
-    data['edge.actions'] = this.edgeActions;
-    data['actions.actionsParameters'] = this.actionsActionsParameters;
-    data['instantActions'] = this.instantActions;
-    data['trajectory.knotVector'] = this.trajectoryKnotVector;
-    data['trajectory.controlPoints'] = this.trajectoryControlPoints;
-    data['state.nodeStates'] = this.stateNodeStates;
-    data['state.edgeStates'] = this.stateEdgeStates;
-    data['state.loads'] = this.stateLoads;
-    data['state.actionStates'] = this.stateActionStates;
-    data['state.errors'] = this.stateErrors;
-    data['state.information'] = this.stateInformation;
-    data['error.errorReferences'] = this.errorErrorReferences;
-    data['information.infoReferences'] = this.informationInfoReferences;
-    return data;
-  }
+  Map<String, dynamic> toJson() => Map<String, dynamic>.from(extra);
 }
 
 class Timing {
-  int? minOrderInterval;
-  int? minStateInterval;
-  int? defaultStateInterval;
-  int? visualizationInterval;
+  double? minimumOrderInterval;
+  double? minimumStateInterval;
+  double? defaultStateInterval;
+  double? visualizationInterval;
 
-  Timing(
-      {this.minOrderInterval,
-      this.minStateInterval,
-      this.defaultStateInterval,
-      this.visualizationInterval});
+  Timing({
+    this.minimumOrderInterval,
+    this.minimumStateInterval,
+    this.defaultStateInterval,
+    this.visualizationInterval,
+  });
 
   Timing.fromJson(Map<String, dynamic> json) {
-    minOrderInterval = json['minOrderInterval'];
-    minStateInterval = json['minStateInterval'];
-    defaultStateInterval = json['defaultStateInterval'];
-    visualizationInterval = json['visualizationInterval'];
+    minimumOrderInterval = asDouble(json['minimumOrderInterval']);
+    minimumStateInterval = asDouble(json['minimumStateInterval']);
+    defaultStateInterval = asDouble(json['defaultStateInterval']);
+    visualizationInterval = asDouble(json['visualizationInterval']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['minOrderInterval'] = this.minOrderInterval;
-    data['minStateInterval'] = this.minStateInterval;
-    data['defaultStateInterval'] = this.defaultStateInterval;
-    data['visualizationInterval'] = this.visualizationInterval;
+    final data = <String, dynamic>{
+      'minimumOrderInterval': minimumOrderInterval,
+      'minimumStateInterval': minimumStateInterval,
+    };
+    if (defaultStateInterval != null) {
+      data['defaultStateInterval'] = defaultStateInterval;
+    }
+    if (visualizationInterval != null) {
+      data['visualizationInterval'] = visualizationInterval;
+    }
     return data;
   }
 }
 
 class ProtocolFeatures {
-  List<OptionalParameters>? optionalParameters;
-  List<AgvActions>? agvActions;
+  List<OptionalParameter>? optionalParameters;
+  List<MobileRobotAction>? mobileRobotActions;
 
-  ProtocolFeatures({this.optionalParameters, this.agvActions});
+  ProtocolFeatures({this.optionalParameters, this.mobileRobotActions});
 
   ProtocolFeatures.fromJson(Map<String, dynamic> json) {
-    if (json['optionalParameters'] != null) {
-      optionalParameters = <OptionalParameters>[];
-      json['optionalParameters'].forEach((v) {
-        optionalParameters!.add(new OptionalParameters.fromJson(v));
-      });
-    }
-    if (json['agvActions'] != null) {
-      agvActions = <AgvActions>[];
-      json['agvActions'].forEach((v) {
-        agvActions!.add(new AgvActions.fromJson(v));
-      });
-    }
+    optionalParameters =
+        asList(json['optionalParameters'], OptionalParameter.fromJson);
+    mobileRobotActions =
+        asList(json['mobileRobotActions'], MobileRobotAction.fromJson);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.optionalParameters != null) {
-      data['optionalParameters'] =
-          this.optionalParameters!.map((v) => v.toJson()).toList();
-    }
-    if (this.agvActions != null) {
-      data['agvActions'] = this.agvActions!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        'optionalParameters':
+            (optionalParameters ?? const []).map((e) => e.toJson()).toList(),
+        'mobileRobotActions':
+            (mobileRobotActions ?? const []).map((e) => e.toJson()).toList(),
+      };
 }
 
-class OptionalParameters {
+class OptionalParameter {
   String? parameter;
+
+  /// SUPPORTED or REQUIRED.
   String? support;
   String? description;
 
-  OptionalParameters({this.parameter, this.support, this.description});
+  OptionalParameter({this.parameter, this.support, this.description});
 
-  OptionalParameters.fromJson(Map<String, dynamic> json) {
+  OptionalParameter.fromJson(Map<String, dynamic> json) {
     parameter = json['parameter'];
     support = json['support'];
     description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['parameter'] = this.parameter;
-    data['support'] = this.support;
-    data['description'] = this.description;
+    final data = <String, dynamic>{'parameter': parameter, 'support': support};
+    if (description != null) data['description'] = description;
     return data;
   }
 }
 
-class AgvActions {
+class MobileRobotAction {
   String? actionType;
-  List<String>? actionScopes;
   String? actionDescription;
-  List<ActionParameters>? actionParameters;
-  String? resultDescription;
-  // List<Object>? blockingTypes;
 
-  AgvActions(
-      {this.actionType,
-      this.actionScopes,
-      this.actionDescription,
-      this.actionParameters,
-      this.resultDescription});
+  /// Each entry is one of: INSTANT, NODE, EDGE, ZONE.
+  List<String>? actionScopes;
+  List<ActionParameterDefinition>? actionParameters;
+  String? actionResult;
 
-  AgvActions.fromJson(Map<String, dynamic> json) {
+  /// Each entry is one of: NONE, SOFT, SINGLE, HARD.
+  List<String>? blockingTypes;
+  String? pauseAllowed;
+  String? cancelAllowed;
+
+  MobileRobotAction({
+    this.actionType,
+    this.actionDescription,
+    this.actionScopes,
+    this.actionParameters,
+    this.actionResult,
+    this.blockingTypes,
+    this.pauseAllowed,
+    this.cancelAllowed,
+  });
+
+  MobileRobotAction.fromJson(Map<String, dynamic> json) {
     actionType = json['actionType'];
-    actionScopes = json['actionScopes'].cast<String>();
     actionDescription = json['actionDescription'];
-    if (json['actionParameters'] != null) {
-      actionParameters = <ActionParameters>[];
-      json['actionParameters'].forEach((v) {
-        actionParameters!.add(new ActionParameters.fromJson(v));
-      });
-    }
-    resultDescription = json['resultDescription'];
-    // if (json['blockingTypes'] != null) {
-    // 	blockingTypes = <Null>[];
-    // 	json['blockingTypes'].forEach((v) { blockingTypes!.add(new Null.fromJson(v)); });
-    // }
+    actionScopes = asStringList(json['actionScopes']);
+    actionParameters =
+        asList(json['actionParameters'], ActionParameterDefinition.fromJson);
+    actionResult = json['actionResult'];
+    blockingTypes = asStringList(json['blockingTypes']);
+    pauseAllowed = json['pauseAllowed'];
+    cancelAllowed = json['cancelAllowed'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['actionType'] = this.actionType;
-    data['actionScopes'] = this.actionScopes;
-    data['actionDescription'] = this.actionDescription;
-    if (this.actionParameters != null) {
+    final data = <String, dynamic>{
+      'actionType': actionType,
+      'actionScopes': actionScopes,
+      'pauseAllowed': pauseAllowed,
+      'cancelAllowed': cancelAllowed,
+    };
+    if (actionDescription != null) data['actionDescription'] = actionDescription;
+    if (actionParameters != null) {
       data['actionParameters'] =
-          this.actionParameters!.map((v) => v.toJson()).toList();
+          actionParameters!.map((e) => e.toJson()).toList();
     }
-    data['resultDescription'] = this.resultDescription;
-    // if (this.blockingTypes != null) {
-    //   data['blockingTypes'] = this.blockingTypes!.map((v) => v.toJson()).toList();
-    // }
+    if (actionResult != null) data['actionResult'] = actionResult;
+    if (blockingTypes != null) data['blockingTypes'] = blockingTypes;
     return data;
   }
 }
 
-class ActionParameters {
+class ActionParameterDefinition {
   String? key;
+
+  /// BOOL, NUMBER, INTEGER, STRING, OBJECT or ARRAY.
   String? valueDataType;
   String? description;
   bool? isOptional;
 
-  ActionParameters(
-      {this.key, this.valueDataType, this.description, this.isOptional});
+  ActionParameterDefinition({
+    this.key,
+    this.valueDataType,
+    this.description,
+    this.isOptional,
+  });
 
-  ActionParameters.fromJson(Map<String, dynamic> json) {
+  ActionParameterDefinition.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     valueDataType = json['valueDataType'];
     description = json['description'];
@@ -475,467 +448,400 @@ class ActionParameters {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['valueDataType'] = this.valueDataType;
-    data['description'] = this.description;
-    data['isOptional'] = this.isOptional;
+    final data = <String, dynamic>{'key': key, 'valueDataType': valueDataType};
+    if (description != null) data['description'] = description;
+    if (isOptional != null) data['isOptional'] = isOptional;
     return data;
   }
 }
 
-class AgvGeometry {
-  List<WheelDefinitions>? wheelDefinitions;
-  List<Envelopes2d>? envelopes2d;
-  List<Envelopes3d>? envelopes3d;
+class MobileRobotGeometry {
+  List<WheelDefinition>? wheelDefinitions;
+  List<Envelope2d>? envelopes2d;
+  List<Envelope3d>? envelopes3d;
 
-  AgvGeometry({this.wheelDefinitions, this.envelopes2d, this.envelopes3d});
+  MobileRobotGeometry({
+    this.wheelDefinitions,
+    this.envelopes2d,
+    this.envelopes3d,
+  });
 
-  AgvGeometry.fromJson(Map<String, dynamic> json) {
-    if (json['wheelDefinitions'] != null) {
-      wheelDefinitions = <WheelDefinitions>[];
-      json['wheelDefinitions'].forEach((v) {
-        wheelDefinitions!.add(new WheelDefinitions.fromJson(v));
-      });
-    }
-    if (json['envelopes2d'] != null) {
-      envelopes2d = <Envelopes2d>[];
-      json['envelopes2d'].forEach((v) {
-        envelopes2d!.add(new Envelopes2d.fromJson(v));
-      });
-    }
-    if (json['envelopes3d'] != null) {
-      envelopes3d = <Envelopes3d>[];
-      json['envelopes3d'].forEach((v) {
-        envelopes3d!.add(new Envelopes3d.fromJson(v));
-      });
-    }
+  MobileRobotGeometry.fromJson(Map<String, dynamic> json) {
+    wheelDefinitions =
+        asList(json['wheelDefinitions'], WheelDefinition.fromJson);
+    envelopes2d = asList(json['envelopes2d'], Envelope2d.fromJson);
+    envelopes3d = asList(json['envelopes3d'], Envelope3d.fromJson);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.wheelDefinitions != null) {
+    final data = <String, dynamic>{};
+    if (wheelDefinitions != null) {
       data['wheelDefinitions'] =
-          this.wheelDefinitions!.map((v) => v.toJson()).toList();
+          wheelDefinitions!.map((e) => e.toJson()).toList();
     }
-    if (this.envelopes2d != null) {
-      data['envelopes2d'] = this.envelopes2d!.map((v) => v.toJson()).toList();
+    if (envelopes2d != null) {
+      data['envelopes2d'] = envelopes2d!.map((e) => e.toJson()).toList();
     }
-    if (this.envelopes3d != null) {
-      data['envelopes3d'] = this.envelopes3d!.map((v) => v.toJson()).toList();
+    if (envelopes3d != null) {
+      data['envelopes3d'] = envelopes3d!.map((e) => e.toJson()).toList();
     }
     return data;
   }
 }
 
-class WheelDefinitions {
+class WheelDefinition {
   String? type;
   bool? isActiveDriven;
   bool? isActiveSteered;
-  Position? position;
-  int? diameter;
-  int? width;
-  int? centerDisplacement;
+  WheelPosition? position;
+  double? diameter;
+  double? width;
+  double? centerDisplacement;
   String? constraints;
 
-  WheelDefinitions(
-      {this.type,
-      this.isActiveDriven,
-      this.isActiveSteered,
-      this.position,
-      this.diameter,
-      this.width,
-      this.centerDisplacement,
-      this.constraints});
+  WheelDefinition({
+    this.type,
+    this.isActiveDriven,
+    this.isActiveSteered,
+    this.position,
+    this.diameter,
+    this.width,
+    this.centerDisplacement,
+    this.constraints,
+  });
 
-  WheelDefinitions.fromJson(Map<String, dynamic> json) {
+  WheelDefinition.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     isActiveDriven = json['isActiveDriven'];
     isActiveSteered = json['isActiveSteered'];
     position = json['position'] != null
-        ? new Position.fromJson(json['position'])
+        ? WheelPosition.fromJson(json['position'])
         : null;
-    diameter = json['diameter'];
-    width = json['width'];
-    centerDisplacement = json['centerDisplacement'];
+    diameter = asDouble(json['diameter']);
+    width = asDouble(json['width']);
+    centerDisplacement = asDouble(json['centerDisplacement']);
     constraints = json['constraints'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['isActiveDriven'] = this.isActiveDriven;
-    data['isActiveSteered'] = this.isActiveSteered;
-    if (this.position != null) {
-      data['position'] = this.position!.toJson();
+    final data = <String, dynamic>{
+      'type': type,
+      'isActiveDriven': isActiveDriven,
+      'isActiveSteered': isActiveSteered,
+      'diameter': diameter,
+      'width': width,
+    };
+    if (position != null) data['position'] = position!.toJson();
+    if (centerDisplacement != null) {
+      data['centerDisplacement'] = centerDisplacement;
     }
-    data['diameter'] = this.diameter;
-    data['width'] = this.width;
-    data['centerDisplacement'] = this.centerDisplacement;
-    data['constraints'] = this.constraints;
+    if (constraints != null) data['constraints'] = constraints;
     return data;
   }
 }
 
-class Position {
-  int? x;
-  int? y;
-  int? theta;
+class WheelPosition {
+  double? x;
+  double? y;
+  double? theta;
 
-  Position({this.x, this.y, this.theta});
+  WheelPosition({this.x, this.y, this.theta});
 
-  Position.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    theta = json['theta'];
+  WheelPosition.fromJson(Map<String, dynamic> json) {
+    x = asDouble(json['x']);
+    y = asDouble(json['y']);
+    theta = asDouble(json['theta']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['theta'] = this.theta;
+    final data = <String, dynamic>{'x': x, 'y': y};
+    if (theta != null) data['theta'] = theta;
     return data;
   }
 }
 
-class Envelopes2d {
-  String? set;
-  List<PolygonPoints>? polygonPoints;
+class Envelope2d {
+  String? envelope2dId;
+  List<Vertex>? vertices;
   String? description;
 
-  Envelopes2d({this.set, this.polygonPoints, this.description});
+  Envelope2d({this.envelope2dId, this.vertices, this.description});
 
-  Envelopes2d.fromJson(Map<String, dynamic> json) {
-    set = json['set'];
-    if (json['polygonPoints'] != null) {
-      polygonPoints = <PolygonPoints>[];
-      json['polygonPoints'].forEach((v) {
-        polygonPoints!.add(new PolygonPoints.fromJson(v));
-      });
-    }
+  Envelope2d.fromJson(Map<String, dynamic> json) {
+    envelope2dId = json['envelope2dId'];
+    vertices = asList(json['vertices'], Vertex.fromJson);
     description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['set'] = this.set;
-    if (this.polygonPoints != null) {
-      data['polygonPoints'] =
-          this.polygonPoints!.map((v) => v.toJson()).toList();
-    }
-    data['description'] = this.description;
+    final data = <String, dynamic>{
+      'envelope2dId': envelope2dId,
+      'vertices': (vertices ?? const []).map((e) => e.toJson()).toList(),
+    };
+    if (description != null) data['description'] = description;
     return data;
   }
 }
 
-class PolygonPoints {
-  int? x;
-  int? y;
-
-  PolygonPoints({this.x, this.y});
-
-  PolygonPoints.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    return data;
-  }
-}
-
-class Envelopes3d {
-  String? set;
+class Envelope3d {
+  String? envelope3dId;
   String? format;
-  Data? data;
+  dynamic data;
   String? url;
-  int? description;
+  String? description;
 
-  Envelopes3d({this.set, this.format, this.data, this.url, this.description});
+  Envelope3d({
+    this.envelope3dId,
+    this.format,
+    this.data,
+    this.url,
+    this.description,
+  });
 
-  Envelopes3d.fromJson(Map<String, dynamic> json) {
-    set = json['set'];
+  Envelope3d.fromJson(Map<String, dynamic> json) {
+    envelope3dId = json['envelope3dId'];
     format = json['format'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'];
     url = json['url'];
     description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['set'] = this.set;
-    data['format'] = this.format;
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
-    }
-    data['url'] = this.url;
-    data['description'] = this.description;
-    return data;
-  }
-}
-
-class Data {
-  Data();
-
-  Data.fromJson(Map<String, dynamic> json) {}
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    return data;
+    final out = <String, dynamic>{
+      'envelope3dId': envelope3dId,
+      'format': format,
+    };
+    if (data != null) out['data'] = data;
+    if (url != null) out['url'] = url;
+    if (description != null) out['description'] = description;
+    return out;
   }
 }
 
 class LoadSpecification {
   List<String>? loadPositions;
-  List<LoadSets>? loadSets;
+  List<LoadSet>? loadSets;
 
   LoadSpecification({this.loadPositions, this.loadSets});
 
   LoadSpecification.fromJson(Map<String, dynamic> json) {
-    loadPositions = json['loadPositions'].cast<String>();
-    if (json['loadSets'] != null) {
-      loadSets = <LoadSets>[];
-      json['loadSets'].forEach((v) {
-        loadSets!.add(new LoadSets.fromJson(v));
-      });
-    }
+    loadPositions = asStringList(json['loadPositions']);
+    loadSets = asList(json['loadSets'], LoadSet.fromJson);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['loadPositions'] = this.loadPositions;
-    if (this.loadSets != null) {
-      data['loadSets'] = this.loadSets!.map((v) => v.toJson()).toList();
+    final data = <String, dynamic>{};
+    if (loadPositions != null) data['loadPositions'] = loadPositions;
+    if (loadSets != null) {
+      data['loadSets'] = loadSets!.map((e) => e.toJson()).toList();
     }
     return data;
   }
 }
 
-class LoadSets {
+class LoadSet {
   String? setName;
   String? loadType;
   List<String>? loadPositions;
   BoundingBoxReference? boundingBoxReference;
   LoadDimensions? loadDimensions;
-  int? maxWeight;
-  int? minLoadhandlingHeight;
-  int? maxLoadhandlingHeight;
-  int? minLoadhandlingDepth;
-  int? maxLoadhandlingDepth;
-  int? minLoadhandlingTilt;
-  int? maxLoadhandlingTilt;
-  int? agvSpeedLimit;
-  int? agvAccelerationLimit;
-  int? agvDecelerationLimit;
-  int? pickTime;
-  int? dropTime;
+  double? maximumWeight;
+  double? minimumLoadhandlingHeight;
+  double? maximumLoadhandlingHeight;
+  double? minimumLoadhandlingDepth;
+  double? maximumLoadhandlingDepth;
+  double? minimumLoadhandlingTilt;
+  double? maximumLoadhandlingTilt;
+  double? maximumSpeed;
+  double? maximumAcceleration;
+  double? maximumDeceleration;
+  double? pickTime;
+  double? dropTime;
   String? description;
 
-  LoadSets(
-      {this.setName,
-      this.loadType,
-      this.loadPositions,
-      this.boundingBoxReference,
-      this.loadDimensions,
-      this.maxWeight,
-      this.minLoadhandlingHeight,
-      this.maxLoadhandlingHeight,
-      this.minLoadhandlingDepth,
-      this.maxLoadhandlingDepth,
-      this.minLoadhandlingTilt,
-      this.maxLoadhandlingTilt,
-      this.agvSpeedLimit,
-      this.agvAccelerationLimit,
-      this.agvDecelerationLimit,
-      this.pickTime,
-      this.dropTime,
-      this.description});
+  LoadSet({
+    this.setName,
+    this.loadType,
+    this.loadPositions,
+    this.boundingBoxReference,
+    this.loadDimensions,
+    this.maximumWeight,
+    this.minimumLoadhandlingHeight,
+    this.maximumLoadhandlingHeight,
+    this.minimumLoadhandlingDepth,
+    this.maximumLoadhandlingDepth,
+    this.minimumLoadhandlingTilt,
+    this.maximumLoadhandlingTilt,
+    this.maximumSpeed,
+    this.maximumAcceleration,
+    this.maximumDeceleration,
+    this.pickTime,
+    this.dropTime,
+    this.description,
+  });
 
-  LoadSets.fromJson(Map<String, dynamic> json) {
+  LoadSet.fromJson(Map<String, dynamic> json) {
     setName = json['setName'];
     loadType = json['loadType'];
-    loadPositions = json['loadPositions'].cast<String>();
+    loadPositions = asStringList(json['loadPositions']);
     boundingBoxReference = json['boundingBoxReference'] != null
-        ? new BoundingBoxReference.fromJson(json['boundingBoxReference'])
+        ? BoundingBoxReference.fromJson(json['boundingBoxReference'])
         : null;
     loadDimensions = json['loadDimensions'] != null
-        ? new LoadDimensions.fromJson(json['loadDimensions'])
+        ? LoadDimensions.fromJson(json['loadDimensions'])
         : null;
-    maxWeight = json['maxWeight'];
-    minLoadhandlingHeight = json['minLoadhandlingHeight'];
-    maxLoadhandlingHeight = json['maxLoadhandlingHeight'];
-    minLoadhandlingDepth = json['minLoadhandlingDepth'];
-    maxLoadhandlingDepth = json['maxLoadhandlingDepth'];
-    minLoadhandlingTilt = json['minLoadhandlingTilt'];
-    maxLoadhandlingTilt = json['maxLoadhandlingTilt'];
-    agvSpeedLimit = json['agvSpeedLimit'];
-    agvAccelerationLimit = json['agvAccelerationLimit'];
-    agvDecelerationLimit = json['agvDecelerationLimit'];
-    pickTime = json['pickTime'];
-    dropTime = json['dropTime'];
+    maximumWeight = asDouble(json['maximumWeight']);
+    minimumLoadhandlingHeight = asDouble(json['minimumLoadhandlingHeight']);
+    maximumLoadhandlingHeight = asDouble(json['maximumLoadhandlingHeight']);
+    minimumLoadhandlingDepth = asDouble(json['minimumLoadhandlingDepth']);
+    maximumLoadhandlingDepth = asDouble(json['maximumLoadhandlingDepth']);
+    minimumLoadhandlingTilt = asDouble(json['minimumLoadhandlingTilt']);
+    maximumLoadhandlingTilt = asDouble(json['maximumLoadhandlingTilt']);
+    maximumSpeed = asDouble(json['maximumSpeed']);
+    maximumAcceleration = asDouble(json['maximumAcceleration']);
+    maximumDeceleration = asDouble(json['maximumDeceleration']);
+    pickTime = asDouble(json['pickTime']);
+    dropTime = asDouble(json['dropTime']);
     description = json['description'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['setName'] = this.setName;
-    data['loadType'] = this.loadType;
-    data['loadPositions'] = this.loadPositions;
-    if (this.boundingBoxReference != null) {
-      data['boundingBoxReference'] = this.boundingBoxReference!.toJson();
+    final data = <String, dynamic>{'setName': setName, 'loadType': loadType};
+    void put(String k, dynamic v) {
+      if (v != null) data[k] = v;
     }
-    if (this.loadDimensions != null) {
-      data['loadDimensions'] = this.loadDimensions!.toJson();
-    }
-    data['maxWeight'] = this.maxWeight;
-    data['minLoadhandlingHeight'] = this.minLoadhandlingHeight;
-    data['maxLoadhandlingHeight'] = this.maxLoadhandlingHeight;
-    data['minLoadhandlingDepth'] = this.minLoadhandlingDepth;
-    data['maxLoadhandlingDepth'] = this.maxLoadhandlingDepth;
-    data['minLoadhandlingTilt'] = this.minLoadhandlingTilt;
-    data['maxLoadhandlingTilt'] = this.maxLoadhandlingTilt;
-    data['agvSpeedLimit'] = this.agvSpeedLimit;
-    data['agvAccelerationLimit'] = this.agvAccelerationLimit;
-    data['agvDecelerationLimit'] = this.agvDecelerationLimit;
-    data['pickTime'] = this.pickTime;
-    data['dropTime'] = this.dropTime;
-    data['description'] = this.description;
+
+    put('loadPositions', loadPositions);
+    put('boundingBoxReference', boundingBoxReference?.toJson());
+    put('loadDimensions', loadDimensions?.toJson());
+    put('maximumWeight', maximumWeight);
+    put('minimumLoadhandlingHeight', minimumLoadhandlingHeight);
+    put('maximumLoadhandlingHeight', maximumLoadhandlingHeight);
+    put('minimumLoadhandlingDepth', minimumLoadhandlingDepth);
+    put('maximumLoadhandlingDepth', maximumLoadhandlingDepth);
+    put('minimumLoadhandlingTilt', minimumLoadhandlingTilt);
+    put('maximumLoadhandlingTilt', maximumLoadhandlingTilt);
+    put('maximumSpeed', maximumSpeed);
+    put('maximumAcceleration', maximumAcceleration);
+    put('maximumDeceleration', maximumDeceleration);
+    put('pickTime', pickTime);
+    put('dropTime', dropTime);
+    put('description', description);
     return data;
   }
 }
 
-class BoundingBoxReference {
-  int? x;
-  int? y;
-  int? z;
-  int? theta;
+class MobileRobotConfiguration {
+  List<VersionEntry>? versions;
+  NetworkInterface? network;
+  BatteryCharging? batteryCharging;
 
-  BoundingBoxReference({this.x, this.y, this.z, this.theta});
+  MobileRobotConfiguration({this.versions, this.network, this.batteryCharging});
 
-  BoundingBoxReference.fromJson(Map<String, dynamic> json) {
-    x = json['x'];
-    y = json['y'];
-    z = json['z'];
-    theta = json['theta'];
+  MobileRobotConfiguration.fromJson(Map<String, dynamic> json) {
+    versions = asList(json['versions'], VersionEntry.fromJson);
+    network = json['network'] != null
+        ? NetworkInterface.fromJson(json['network'])
+        : null;
+    batteryCharging = json['batteryCharging'] != null
+        ? BatteryCharging.fromJson(json['batteryCharging'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['x'] = this.x;
-    data['y'] = this.y;
-    data['z'] = this.z;
-    data['theta'] = this.theta;
-    return data;
-  }
-}
-
-class LoadDimensions {
-  int? length;
-  int? width;
-  int? height;
-
-  LoadDimensions({this.length, this.width, this.height});
-
-  LoadDimensions.fromJson(Map<String, dynamic> json) {
-    length = json['length'];
-    width = json['width'];
-    height = json['height'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['length'] = this.length;
-    data['width'] = this.width;
-    data['height'] = this.height;
-    return data;
-  }
-}
-
-class VehicleConfig {
-  List<Versions>? versions;
-  Network? network;
-
-  VehicleConfig({this.versions, this.network});
-
-  VehicleConfig.fromJson(Map<String, dynamic> json) {
-    if (json['versions'] != null) {
-      versions = <Versions>[];
-      json['versions'].forEach((v) {
-        versions!.add(new Versions.fromJson(v));
-      });
+    final data = <String, dynamic>{};
+    if (versions != null) {
+      data['versions'] = versions!.map((e) => e.toJson()).toList();
     }
-    network =
-        json['network'] != null ? new Network.fromJson(json['network']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.versions != null) {
-      data['versions'] = this.versions!.map((v) => v.toJson()).toList();
-    }
-    if (this.network != null) {
-      data['network'] = this.network!.toJson();
+    if (network != null) data['network'] = network!.toJson();
+    if (batteryCharging != null) {
+      data['batteryCharging'] = batteryCharging!.toJson();
     }
     return data;
   }
 }
 
-class Versions {
+class VersionEntry {
   String? key;
   String? value;
 
-  Versions({this.key, this.value});
+  VersionEntry({this.key, this.value});
 
-  Versions.fromJson(Map<String, dynamic> json) {
-    key = json['key'];
-    value = json['value'];
-  }
+  VersionEntry.fromJson(Map<String, dynamic> json)
+      : key = json['key'],
+        value = json['value'];
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['key'] = this.key;
-    data['value'] = this.value;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {'key': key, 'value': value};
 }
 
-class Network {
-  // List<String>? dnsServers;
-  String? localIpAddress;
+class NetworkInterface {
+  List<String>? dnsServers;
   List<String>? ntpServers;
+  String? localIpAddress;
   String? netmask;
   String? defaultGateway;
 
-  Network(
-      {this.localIpAddress,
-      this.ntpServers,
-      this.netmask,
-      this.defaultGateway});
+  NetworkInterface({
+    this.dnsServers,
+    this.ntpServers,
+    this.localIpAddress,
+    this.netmask,
+    this.defaultGateway,
+  });
 
-  Network.fromJson(Map<String, dynamic> json) {
-    // if (json['dnsServers'] != null) {
-    // 	dnsServers = <String>[];
-    // 	json['dnsServers'].forEach((v as <>[]) { dnsServers!.add(new v.toString()); });
-    // }
+  NetworkInterface.fromJson(Map<String, dynamic> json) {
+    dnsServers = asStringList(json['dnsServers']);
+    ntpServers = asStringList(json['ntpServers']);
     localIpAddress = json['localIpAddress'];
-    ntpServers = json['ntpServers'].cast<String>();
     netmask = json['netmask'];
     defaultGateway = json['defaultGateway'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    // if (this.dnsServers != null) {
-    //   data['dnsServers'] = this.dnsServers!.map((v) => v.toJson()).toList();
-    // }
-    data['localIpAddress'] = this.localIpAddress;
-    data['ntpServers'] = this.ntpServers;
-    data['netmask'] = this.netmask;
-    data['defaultGateway'] = this.defaultGateway;
+    final data = <String, dynamic>{};
+    if (dnsServers != null) data['dnsServers'] = dnsServers;
+    if (ntpServers != null) data['ntpServers'] = ntpServers;
+    if (localIpAddress != null) data['localIpAddress'] = localIpAddress;
+    if (netmask != null) data['netmask'] = netmask;
+    if (defaultGateway != null) data['defaultGateway'] = defaultGateway;
+    return data;
+  }
+}
+
+class BatteryCharging {
+  double? criticalLowChargingLevel;
+  double? minimumDesiredChargingLevel;
+  double? maximumDesiredChargingLevel;
+  double? minimumChargingTime;
+
+  BatteryCharging({
+    this.criticalLowChargingLevel,
+    this.minimumDesiredChargingLevel,
+    this.maximumDesiredChargingLevel,
+    this.minimumChargingTime,
+  });
+
+  BatteryCharging.fromJson(Map<String, dynamic> json) {
+    criticalLowChargingLevel = asDouble(json['criticalLowChargingLevel']);
+    minimumDesiredChargingLevel = asDouble(json['minimumDesiredChargingLevel']);
+    maximumDesiredChargingLevel = asDouble(json['maximumDesiredChargingLevel']);
+    minimumChargingTime = asDouble(json['minimumChargingTime']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    if (criticalLowChargingLevel != null) {
+      data['criticalLowChargingLevel'] = criticalLowChargingLevel;
+    }
+    if (minimumDesiredChargingLevel != null) {
+      data['minimumDesiredChargingLevel'] = minimumDesiredChargingLevel;
+    }
+    if (maximumDesiredChargingLevel != null) {
+      data['maximumDesiredChargingLevel'] = maximumDesiredChargingLevel;
+    }
+    if (minimumChargingTime != null) {
+      data['minimumChargingTime'] = minimumChargingTime;
+    }
     return data;
   }
 }
